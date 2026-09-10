@@ -80,7 +80,13 @@ export default function Skills({ resumeData }) {
 
         {/* Technical Skills Category Cards */}
         {groupedCategories.length > 0 && (
-          <div className="skills-category-grid" style={{ marginBottom: showSoftSkills ? '2rem' : '0' }}>
+          <div
+            className="skills-category-grid"
+            style={{
+              gridTemplateColumns: activeTab === 'all' ? 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))' : '1fr',
+              marginBottom: showSoftSkills ? '1.5rem' : '0'
+            }}
+          >
             {groupedCategories.map((group) => (
               <div key={group.id} className="spotlight-card skill-category-card">
                 <div className="card-spotlight-overlay" />
@@ -114,7 +120,7 @@ export default function Skills({ resumeData }) {
 
         {/* Soft Skills Section */}
         {showSoftSkills && (
-          <div className="spotlight-card skill-category-card" style={{ marginTop: '1.5rem' }}>
+          <div className="spotlight-card skill-category-card">
             <div className="card-spotlight-overlay" />
             <div className="category-header">
               <div className="category-icon-box">
@@ -123,7 +129,7 @@ export default function Skills({ resumeData }) {
               <h3 className="category-title">Professional &amp; Soft Skills</h3>
             </div>
 
-            <div className="soft-skills-grid">
+            <div className="soft-skills-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))' }}>
               {softSkills.map((skill) => (
                 <div key={skill.name} className="soft-skill-chip">
                   <span className="chip-icon">{skill.icon}</span>
