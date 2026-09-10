@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark light">
+  <title>Jebilin D.M | Aspiring Software Developer — Python, FastAPI & React</title>
+  <meta name="description" content="Portfolio of Jebilin D.M - Final-year Computer Science undergraduate, Python & FastAPI developer, and AI-assisted web project builder based in Chennai, India.">
+  <meta name="keywords" content="Jebilin D.M, Software Developer, Python Developer, FastAPI, React 19, TypeScript, TrizenPhotos, StudentSphere, SQL, MongoDB Atlas, Chennai">
+  <meta name="author" content="Jebilin D.M">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Jebilin D.M | Software Developer Portfolio">
+  <meta property="og:description" content="Final-year CSE student with a strong Python foundation, 2 live full-stack web applications (TrizenPhotos & StudentSphere), and dual internships.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (SVG data URI) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+  <!-- Google Fonts: Inter, Outfit, & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Theme init script to avoid Flash of Unstyled Content (FOUC) -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('jebilin-theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Interactive Background Canvas (Constellation & Nodes) -->
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient background glow orbs -->
+  <div class="glow-orb glow-orb-1" aria-hidden="true"></div>
+  <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
+  <div class="glow-orb glow-orb-3" aria-hidden="true"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo" aria-label="Jebilin D.M Homepage">
+        <span class="logo-mark">JD</span>
+        <span class="logo-text">Jebilin<span class="text-gradient">.dev</span></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="icon-btn theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Resume Trigger -->
+        <button id="open-resume-btn" class="btn btn-outline btn-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Resume
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" class="icon-btn mobile-menu-toggle" aria-label="Toggle mobile navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav-drawer" class="mobile-nav-drawer" aria-hidden="true">
+      <ul class="mobile-nav-links">
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+        <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+        <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+        <li><a href="#education" class="mobile-nav-link">Education</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <button id="mobile-resume-btn" class="btn btn-primary btn-full">View Full Resume</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-content reveal-item">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span class="status-text">Available for Entry-Level Software Development Roles</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hello, I'm <span class="text-gradient highlight-name">Jebilin D.M</span>
+          </h1>
+
+          <div class="typewriter-container" aria-label="Role description">
+            <span class="typewriter-prefix">I am an </span>
+            <span id="typewriter-text" class="typewriter-text"></span>
+            <span class="cursor" aria-hidden="true">|</span>
+          </div>
+
+          <p class="hero-description">
+            Final-year <strong>Computer Science & Engineering</strong> undergraduate (2023–2027) with a solid foundation in Python, SQL, HTML, and CSS. Independently engineered two full-stack web applications—<strong>TrizenPhotos</strong> (React 19, TypeScript, FastAPI, MongoDB Atlas) and <strong>StudentSphere</strong> (React, Python, MongoDB)—by directing <strong>AI-assisted development tools</strong> for implementation, testing, and debugging. Completed two hands-on Python developer internships.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              Explore Featured Projects
+            </a>
+            <button id="hero-resume-trigger" class="btn btn-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              View / Print Resume
+            </button>
+            <a href="#contact" class="btn btn-outline">
+              Get in Touch
+            </a>
+          </div>
+
+          <!-- Quick Meta Pills -->
+          <div class="hero-meta-pills">
+            <div class="meta-pill">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Chennai, India</span>
+            </div>
+            <a href="https://linkedin.com/in/jebilin7" target="_blank" rel="noopener noreferrer" class="meta-pill meta-link" title="Visit LinkedIn Profile">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>linkedin.com/in/jebilin7</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button class="meta-pill meta-copy-btn" data-copy="dmjebilin@gmail.com" title="Click to copy email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>dmjebilin@gmail.com</span>
+              <span class="copy-badge">Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Profile Terminal with Accurate Resume Badges -->
+        <div class="hero-visual reveal-item">
+          <div class="profile-stage">
+            <!-- Floating Tech Badges (100% accurate to resume skills) -->
+            <div class="orbit-badge badge-python" title="Core Python & FastAPI">
+              <span class="badge-icon">🐍</span>
+              <span class="badge-text">Python & FastAPI</span>
+            </div>
+            <div class="orbit-badge badge-sql" title="SQL (DDL, DML, DQL, DCL, TCL)">
+              <span class="badge-icon">🗄️</span>
+              <span class="badge-text">SQL & MongoDB</span>
+            </div>
+            <div class="orbit-badge badge-html" title="HTML5 & CSS3 Web Foundation">
+              <span class="badge-icon">🌐</span>
+              <span class="badge-text">HTML5 & CSS3</span>
+            </div>
+            <div class="orbit-badge badge-git" title="Git & GitHub">
+              <span class="badge-icon">🐙</span>
+              <span class="badge-text">Git & GitHub</span>
+            </div>
+            <div class="orbit-badge badge-ai" title="AI-Assisted Development">
+              <span class="badge-icon">⚡</span>
+              <span class="badge-text">AI-Assisted Dev</span>
+            </div>
+
+            <!-- Glassmorphic Terminal Card with Spotlight Effect -->
+            <div class="profile-card-glass spotlight-card" id="profile-card">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              
+              <div class="profile-header">
+                <div class="profile-avatar">
+                  <div class="avatar-initials">JD</div>
+                  <div class="avatar-ring"></div>
+                </div>
+                <div class="profile-title-block">
+                  <h3 class="profile-name">Jebilin D.M</h3>
+                  <p class="profile-sub">B.E. Computer Science & Engg</p>
+                  <p class="profile-inst">Anand Institute of Higher Tech</p>
+                </div>
+              </div>
+
+              <div class="profile-code-preview">
+                <div class="code-header">
+                  <div class="window-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                  </div>
+                  <span class="code-filename">developer_profile.py</span>
+                  <button id="run-code-btn" class="run-btn" title="Simulate code run">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    Run
+                  </button>
+                </div>
+                <pre class="code-body"><code><span class="c-keyword">class</span> <span class="c-class">SoftwareDeveloper</span>:
+    <span class="c-keyword">def</span> <span class="c-func">__init__</span>(self):
+        self.name = <span class="c-string">"Jebilin D.M"</span>
+        self.degree = <span class="c-string">"B.E. CSE (2023–2027)"</span>
+        self.location = <span class="c-string">"Chennai, India"</span>
+        self.core = [<span class="c-string">"Python"</span>, <span class="c-string">"FastAPI"</span>, <span class="c-string">"SQL"</span>, <span class="c-string">"HTML5"</span>, <span class="c-string">"CSS3"</span>]
+        self.ai_development = [<span class="c-string">"React 19"</span>, <span class="c-string">"TypeScript"</span>, <span class="c-string">"MongoDB Atlas"</span>]
+        self.shipped = [<span class="c-string">"TrizenPhotos"</span>, <span class="c-string">"StudentSphere"</span>]
+        self.workflow = <span class="c-string">"Prompt-Driven Engineering"</span>
+        self.goal = <span class="c-string">"Entry-Level Software Dev"</span></code></pre>
+                
+                <!-- Run Output Window -->
+                <div id="code-output-pane" class="code-output-pane" aria-live="polite">
+                  <span class="output-prefix">$ python developer_profile.py</span>
+                  <span class="output-result">✔ Initialized: Jebilin D.M | Shipped: TrizenPhotos & StudentSphere Live | Status: Ready to build!</span>
+                </div>
+              </div>
+
+              <div class="profile-tags">
+                <span class="tag">#Python</span>
+                <span class="tag">#FastAPI</span>
+                <span class="tag">#SQL</span>
+                <span class="tag">#React19</span>
+                <span class="tag">#TypeScript</span>
+                <span class="tag">#AI_Assisted_Dev</span>
+                <span class="tag">#Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="section-header reveal-item">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">Engineering Solutions with Modern AI Workflows</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-narrative reveal-item">
+            <p class="lead-text">
+              I am an aspiring Software Developer pursuing my <strong>B.E. in Computer Science and Engineering</strong> (2023–2027) at <strong>Anand Institute of Higher Technology</strong> in Chennai.
+            </p>
+            <p>
+              My technical foundation is built on solid core programming in <strong>Python (OOP concepts, functions, file handling, exceptions)</strong>, relational database querying with <strong>SQL (basic – DDL, DML, DQL, DCL, TCL)</strong>, and structured web development with <strong>HTML5 and CSS3</strong>.
+            </p>
+            <p>
+              I specialize in leveraging modern <strong>AI-assisted development tools</strong> to translate user requirements into functional software. Across two live production platforms—<strong>TrizenPhotos</strong> (FastAPI, React 19, TypeScript, MongoDB Atlas) and <strong>StudentSphere</strong> (React, Python, MongoDB)—I formulated detailed prompts, directed AI coding tools to implement features, and conducted rigorous manual debugging, verification, and automated testing before public deployment.
+            </p>
+            <p>
+              Having completed two virtual Python development internships at <strong>Judah Code Technologies</strong> and <strong>Intern Infobyte</strong>, I have demonstrated strong time management, problem-solving, and the discipline to consistently deliver quality code under deadlines.
+            </p>
+
+            <div class="about-languages">
+              <span class="languages-title">Languages Known:</span>
+              <span class="lang-badge"><strong>English</strong> (Professional Working)</span>
+              <span class="lang-badge"><strong>Tamil</strong> (Native)</span>
+            </div>
+          </div>
+
+          <div class="about-metrics-grid reveal-item">
+            <!-- Metric 1 -->
+            <div class="metric-card spotlight-card">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <div class="metric-icon">🎓</div>
+              <div class="metric-value-wrapper">
+                <span class="metric-value counter" data-target="2027">0</span>
+              </div>
+              <div class="metric-label">B.E. Computer Science</div>
+              <div class="metric-detail">Anand Institute of Higher Tech (2023–2027)</div>
+            </div>
+
+            <!-- Metric 2 -->
+            <div class="metric-card spotlight-card">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <div class="metric-icon">💼</div>
+              <div class="metric-value-wrapper">
+                <span class="metric-value counter" data-target="2">0</span>
+                <span class="metric-suffix">x</span>
+              </div>
+              <div class="metric-label">Python Internships</div>
+              <div class="metric-detail">Judah Code Tech & Intern Infobyte</div>
+            </div>
+
+            <!-- Metric 3 -->
+            <div class="metric-card spotlight-card">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <div class="metric-icon">🚀</div>
+              <div class="metric-value-wrapper">
+                <span class="metric-value counter" data-target="2">0</span>
+                <span class="metric-suffix">Live</span>
+              </div>
+              <div class="metric-label">Full-Stack Apps Shipped</div>
+              <div class="metric-detail">TrizenPhotos & StudentSphere on Vercel/Render</div>
+            </div>
+
+            <!-- Metric 4 -->
+            <div class="metric-card spotlight-card">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <div class="metric-icon">⚡</div>
+              <div class="metric-value-wrapper">
+                <span class="metric-value counter" data-target="100" data-suffix="%">0</span>
+              </div>
+              <div class="metric-label">Delivery Consistency</div>
+              <div class="metric-detail">100% deadlines met & tests passed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Section (100% strictly adhering to resume) -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <div class="section-header reveal-item">
+          <span class="section-tag">Technical Competencies</span>
+          <h2 class="section-title">Skills & Tooling</h2>
+          <p class="section-subtitle">Grounded in Core Python, SQL, Web Fundamentals, and AI-Assisted Engineering</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <!-- Skills Filter Tabs -->
+        <div class="skills-filter-nav reveal-item" role="tablist" aria-label="Filter Skills">
+          <button class="skill-tab active" data-filter="all" role="tab" aria-selected="true">All Skills</button>
+          <button class="skill-tab" data-filter="core" role="tab" aria-selected="false">Languages & Core</button>
+          <button class="skill-tab" data-filter="ai-dev" role="tab" aria-selected="false">AI-Assisted Dev</button>
+          <button class="skill-tab" data-filter="workflow" role="tab" aria-selected="false">Workflow & Tools</button>
+          <button class="skill-tab" data-filter="soft" role="tab" aria-selected="false">Soft Skills</button>
+        </div>
+
+        <div class="skills-category-grid">
+          <!-- Category 1: Languages & Core (Python, SQL, HTML5, CSS3) -->
+          <div class="skill-category-card spotlight-card reveal-item" data-category="core">
+            <div class="card-spotlight-overlay" aria-hidden="true"></div>
+            <div class="category-header">
+              <div class="category-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <h3 class="category-title">Languages & Core</h3>
+            </div>
+            <ul class="skill-items-list">
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Python (Core Programming)</span>
+                  <span class="skill-tag-pill">Strong Foundation</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 90%;"></div>
+                </div>
+                <p class="skill-subtext">Data types, conditionals, loops, functions, file handling, and exception handling applied across dual internships.</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Python (OOP Concepts)</span>
+                  <span class="skill-tag-pill">Object-Oriented</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 86%;"></div>
+                </div>
+                <p class="skill-subtext">Classes, objects, encapsulation, methods, inheritance, and modular program organization.</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">SQL (Database Fundamentals)</span>
+                  <span class="skill-tag-pill">DDL • DML • DQL • DCL • TCL</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 85%;"></div>
+                </div>
+                <p class="skill-subtext">Data Definition (DDL), Data Manipulation (DML), querying with DQL (SELECT, filtering, joins, aggregations), and transaction controls.</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">HTML5 & CSS3</span>
+                  <span class="skill-tag-pill">Semantic & Responsive</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 90%;"></div>
+                </div>
+                <p class="skill-subtext">Semantic page architecture, CSS Grid, Flexbox, custom properties, responsive viewports, and mobile accessibility.</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 2: AI-Assisted Development (Features built with AI tools) -->
+          <div class="skill-category-card spotlight-card reveal-item" data-category="ai-dev">
+            <div class="card-spotlight-overlay" aria-hidden="true"></div>
+            <div class="category-header">
+              <div class="category-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 2a10 10 0 0 1 10 10h-10V2z"></path><path d="M12 12L2.5 7.5"></path></svg>
+              </div>
+              <h3 class="category-title">AI-Assisted Development</h3>
+            </div>
+            <ul class="skill-items-list">
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Full-Stack Feature Engineering</span>
+                  <span class="skill-tag-pill">React 19 & FastAPI</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 94%;"></div>
+                </div>
+                <p class="skill-subtext">Directed AI coding tools to implement React.js / React 19 frontend views, async FastAPI REST endpoints, and MongoDB Atlas persistence.</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Code Verification & Debugging</span>
+                  <span class="skill-tag-pill">Quality Control</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 90%;"></div>
+                </div>
+                <p class="skill-subtext">Meticulously inspecting and testing AI-generated code, solving runtime exceptions, fixing CORS/API routes, and verifying 100% test passes.</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Authentication & Security Scaffolding</span>
+                  <span class="skill-tag-pill">JWT & PIN Portals</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 88%;"></div>
+                </div>
+                <p class="skill-subtext">Designed secure, zero-friction client PIN access with slug routing, plus JWT token authentication for team curation workflows.</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Pillow & Media Pipeline Integration</span>
+                  <span class="skill-tag-pill">Async Processing</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 86%;"></div>
+                </div>
+                <p class="skill-subtext">Constructed automated image resizing and thumbnail generation routines using Python Pillow for fast gallery loading.</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Familiarity with Tools & Workflow -->
+          <div class="skill-category-card spotlight-card reveal-item" data-category="workflow">
+            <div class="card-spotlight-overlay" aria-hidden="true"></div>
+            <div class="category-header">
+              <div class="category-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+              </div>
+              <h3 class="category-title">Workflow & Tools</h3>
+            </div>
+            <ul class="skill-items-list">
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Prompt-Driven Development Workflow</span>
+                  <span class="skill-tag-pill">Prompt Engineering</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 95%;"></div>
+                </div>
+                <p class="skill-subtext">Formulating structured, contextual prompts to generate clean architectural components, database schemas, and API handlers.</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Git & GitHub</span>
+                  <span class="skill-tag-pill">Version Control</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 88%;"></div>
+                </div>
+                <p class="skill-subtext">Branching, commit history discipline, managing project repositories, and linking remote repos to cloud hosts.</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Cloud Deployment (Vercel & Render)</span>
+                  <span class="skill-tag-pill">DevOps Basics</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 87%;"></div>
+                </div>
+                <p class="skill-subtext">Configuring environment variables, build scripts, and live production deployments for frontend (Vercel) and backend (Render).</p>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Debugging Fundamentals</span>
+                  <span class="skill-tag-pill">Diagnostic</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style="width: 89%;"></div>
+                </div>
+                <p class="skill-subtext">Stack trace analysis, HTTP request inspection, console tracing, and systematic defect isolation.</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 4: Professional & Soft Skills -->
+          <div class="skill-category-card spotlight-card reveal-item" data-category="soft">
+            <div class="card-spotlight-overlay" aria-hidden="true"></div>
+            <div class="category-header">
+              <div class="category-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <h3 class="category-title">Professional Attributes</h3>
+            </div>
+            <div class="soft-skills-grid">
+              <div class="soft-skill-chip">
+                <span class="chip-icon">🎯</span>
+                <div class="chip-content">
+                  <span class="chip-label">Problem-Solving</span>
+                  <span class="chip-sub">Root cause tracing</span>
+                </div>
+              </div>
+              <div class="soft-skill-chip">
+                <span class="chip-icon">💬</span>
+                <div class="chip-content">
+                  <span class="chip-label">Communication</span>
+                  <span class="chip-sub">Clear & collaborative</span>
+                </div>
+              </div>
+              <div class="soft-skill-chip">
+                <span class="chip-icon">⏱️</span>
+                <div class="chip-content">
+                  <span class="chip-label">Time Management</span>
+                  <span class="chip-sub">Met 100% of deadlines</span>
+                </div>
+              </div>
+              <div class="soft-skill-chip">
+                <span class="chip-icon">🔄</span>
+                <div class="chip-content">
+                  <span class="chip-label">Adaptability</span>
+                  <span class="chip-sub">Fast workflow adoption</span>
+                </div>
+              </div>
+              <div class="soft-skill-chip">
+                <span class="chip-icon">👥</span>
+                <div class="chip-content">
+                  <span class="chip-label">Leadership</span>
+                  <span class="chip-sub">Dual project ownership</span>
+                </div>
+              </div>
+              <div class="soft-skill-chip">
+                <span class="chip-icon">⚡</span>
+                <div class="chip-content">
+                  <span class="chip-label">Quick Learner</span>
+                  <span class="chip-sub">Rapid tool onboarding</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section (Dual Showcase) -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <div class="section-header reveal-item">
+          <span class="section-tag">Featured Work</span>
+          <h2 class="section-title">Projects Shipped</h2>
+          <p class="section-subtitle">Real-world full-stack web platforms built by directing AI-assisted engineering workflows</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="projects-stack">
+          <!-- ================= PROJECT 1: TrizenPhotos ================= -->
+          <div class="project-showcase-card spotlight-card reveal-item" id="project-trizen">
+            <div class="card-spotlight-overlay" aria-hidden="true"></div>
+            
+            <div class="project-content">
+              <div class="project-top-row">
+                <span class="featured-badge new-badge">⭐ Latest Release</span>
+                <a href="https://trizenphotos.vercel.app" target="_blank" rel="noopener noreferrer" class="live-status-badge" title="Open live TrizenPhotos application">
+                  <span class="live-dot"></span>
+                  <span>Live: trizenphotos.vercel.app</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+
+              <h3 class="project-name">TrizenPhotos – Full-Stack Photography & Gallery Platform</h3>
+              <p class="project-tagline">An event photo delivery platform featuring real-time photo upload, team curation, and client delivery with friction-free PIN portals.</p>
+
+              <div class="tech-tags-list">
+                <span class="tech-tag">React 19</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">MongoDB Atlas</span>
+                <span class="tech-tag">JWT Auth</span>
+                <span class="tech-tag">Pillow</span>
+                <span class="tech-tag">Vercel & Render</span>
+              </div>
+
+              <div class="project-features-list">
+                <div class="feature-bullet">
+                  <div class="bullet-icon">✓</div>
+                  <div>
+                    <strong>Real-Time Delivery & Curation:</strong>
+                    <span> Directed AI-assisted tools to engineer an event photo delivery system with real-time upload, team curation, and client delivery.</span>
+                  </div>
+                </div>
+
+                <div class="feature-bullet">
+                  <div class="bullet-icon">✓</div>
+                  <div>
+                    <strong>Zero-Friction PIN Portals:</strong>
+                    <span> Designed secure, PIN-protected client portals with slug routing, eliminating account creation friction for end clients.</span>
+                  </div>
+                </div>
+
+                <div class="feature-bullet">
+                  <div class="bullet-icon">✓</div>
+                  <div>
+                    <strong>Async REST APIs with FastAPI:</strong>
+                    <span> Built async REST APIs with FastAPI covering JWT authentication, role-based workflows, and Pillow-based thumbnail generation.</span>
+                  </div>
+                </div>
+
+                <div class="feature-bullet">
+                  <div class="bullet-icon">✓</div>
+                  <div>
+                    <strong>Automated Cloud Deployment:</strong>
+                    <span> Automated deployment across Vercel and Render, verifying 100% passing integration and unit tests before release.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-actions">
+                <a href="https://trizenphotos.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Launch Live App ↗
+                </a>
+                <button id="view-trizen-btn" class="btn btn-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                  Architecture & APIs
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive Live Mockup: TrizenPhotos -->
+            <div class="project-mockup">
+              <div class="mockup-frame">
+                <div class="mockup-header">
+                  <div class="mockup-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="mockup-url">trizenphotos.vercel.app</div>
+                </div>
+
+                <div class="mockup-screen">
+                  <div class="mockup-app-header">
+                    <div class="app-logo">📷 TrizenPhotos</div>
+                    
+                    <!-- Interactive Switchable Views -->
+                    <div class="portal-indicators" role="tablist" aria-label="Simulate TrizenPhotos View">
+                      <button class="trizen-pill active" data-view="client" role="tab" aria-selected="true" title="View PIN Client Portal">Client PIN</button>
+                      <button class="trizen-pill" data-view="gallery" role="tab" aria-selected="false" title="View Curated Photo Grid">Gallery Grid</button>
+                      <button class="trizen-pill" data-view="api" role="tab" aria-selected="false" title="View FastAPI Specs">FastAPI API</button>
+                    </div>
+                  </div>
+
+                  <!-- View 1: Client PIN Portal (Default) -->
+                  <div id="trizen-view-client" class="trizen-view-panel active">
+                    <div class="pin-portal-box">
+                      <div class="pin-shield-icon">🔐</div>
+                      <div class="pin-title">Protected Client Gallery</div>
+                      <div class="pin-subtitle">Event Slug: <code>/gallery/wedding-reception-2026</code></div>
+                      <div class="pin-input-row">
+                        <span class="pin-dot filled">•</span>
+                        <span class="pin-dot filled">•</span>
+                        <span class="pin-dot filled">•</span>
+                        <span class="pin-dot filled">•</span>
+                      </div>
+                      <div class="pin-badge-success">✔ PIN Verified: Instant Access Granted (No Login Required)</div>
+                    </div>
+                  </div>
+
+                  <!-- View 2: Curated Gallery Grid -->
+                  <div id="trizen-view-gallery" class="trizen-view-panel">
+                    <div class="mockup-cards">
+                      <div class="mini-card gallery-item">
+                        <div class="mini-card-title">🌅 Sunset Ceremony</div>
+                        <div class="photo-placeholder p1">High-Res (4.8 MB)</div>
+                        <div class="mini-card-stat">Pillow Thumbnail: 120KB ✔</div>
+                      </div>
+                      <div class="mini-card gallery-item">
+                        <div class="mini-card-title">🥂 Toast & Dinner</div>
+                        <div class="photo-placeholder p2">High-Res (5.2 MB)</div>
+                        <div class="mini-card-stat">Pillow Thumbnail: 140KB ✔</div>
+                      </div>
+                      <div class="mini-card full">
+                        <div class="mini-card-title">⚡ Batch Photo Sync</div>
+                        <div class="metric-mini-row">
+                          <span>Curated: <strong>320 Photos</strong></span>
+                          <span>Clients Downloaded: <strong>100%</strong></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- View 3: FastAPI Specs -->
+                  <div id="trizen-view-api" class="trizen-view-panel">
+                    <div class="api-preview-box">
+                      <div class="api-endpoint"><span class="method post">POST</span> <code>/api/v1/events/{slug}/verify-pin</code></div>
+                      <div class="api-endpoint"><span class="method get">GET</span> <code>/api/v1/photos?event_id=...</code></div>
+                      <div class="api-endpoint"><span class="method post">POST</span> <code>/api/v1/upload/batch</code> <span class="jwt-badge">JWT</span></div>
+                      <div class="mini-card-stat">FastAPI Async Engine • Render Hosted (0.12s avg)</div>
+                    </div>
+                  </div>
+
+                  <div class="portal-hint-row">
+                    <span>💡 Click <strong>Client PIN</strong>, <strong>Gallery Grid</strong>, or <strong>FastAPI API</strong> to preview workflows!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PROJECT 2: StudentSphere ================= -->
+          <div class="project-showcase-card spotlight-card reveal-item" id="project-studentsphere">
+            <div class="card-spotlight-overlay" aria-hidden="true"></div>
+            
+            <div class="project-content">
+              <div class="project-top-row">
+                <span class="featured-badge">⭐ Institutional Platform</span>
+                <a href="https://web-service-lake.vercel.app" target="_blank" rel="noopener noreferrer" class="live-status-badge" title="Open live StudentSphere website">
+                  <span class="live-dot"></span>
+                  <span>Live: web-service-lake.vercel.app</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+
+              <h3 class="project-name">StudentSphere – College Management Website</h3>
+              <p class="project-tagline">Independently designed and built a full-stack college management website with 3 role-based portals using AI-assisted development tools.</p>
+
+              <div class="tech-tags-list">
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Python Backend</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Role Portals</span>
+                <span class="tech-tag">Git / GitHub</span>
+                <span class="tech-tag">Live on Vercel</span>
+              </div>
+
+              <div class="project-features-list">
+                <div class="feature-bullet">
+                  <div class="bullet-icon">✓</div>
+                  <div>
+                    <strong>3 Dedicated Role-Based Portals:</strong>
+                    <span> Designed and built 3 segregated portals: <em>Admin</em>, <em>Teacher</em>, and <em>Student</em> with customized dashboards.</span>
+                  </div>
+                </div>
+
+                <div class="feature-bullet">
+                  <div class="bullet-icon">✓</div>
+                  <div>
+                    <strong>Directed AI-Assisted Coding Tools:</strong>
+                    <span> Guided AI coding tools to implement React frontend views, Python server logic, and MongoDB schemas through prompt engineering.</span>
+                  </div>
+                </div>
+
+                <div class="feature-bullet">
+                  <div class="bullet-icon">✓</div>
+                  <div>
+                    <strong>Structured Core Modules:</strong>
+                    <span> Structured attendance, marks, and notice modules across all portals, rigorously testing AI-generated code before deployment.</span>
+                  </div>
+                </div>
+
+                <div class="feature-bullet">
+                  <div class="bullet-icon">✓</div>
+                  <div>
+                    <strong>Delivered Live Prototype End-to-End:</strong>
+                    <span> Tracked all changes using Git and delivered a working, publicly hosted prototype end-to-end on Vercel.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-actions">
+                <a href="https://web-service-lake.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Launch Live App ↗
+                </a>
+                <button id="view-arch-btn" class="btn btn-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                  Architecture & Portals
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive Live Mockup: StudentSphere -->
+            <div class="project-mockup">
+              <div class="mockup-frame">
+                <div class="mockup-header">
+                  <div class="mockup-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="mockup-url">web-service-lake.vercel.app</div>
+                </div>
+
+                <div class="mockup-screen">
+                  <div class="mockup-app-header">
+                    <div class="app-logo">🎓 StudentSphere</div>
+                    
+                    <!-- Interactive Switchable Portal Pills -->
+                    <div class="portal-indicators" role="tablist" aria-label="Simulate StudentSphere Portal">
+                      <button class="portal-pill active" data-portal="admin" role="tab" aria-selected="true" title="View Admin Portal">Admin</button>
+                      <button class="portal-pill" data-portal="teacher" role="tab" aria-selected="false" title="View Teacher Portal">Teacher</button>
+                      <button class="portal-pill" data-portal="student" role="tab" aria-selected="false" title="View Student Portal">Student</button>
+                    </div>
+                  </div>
+
+                  <!-- Portal View 1: Admin (Default) -->
+                  <div id="portal-view-admin" class="portal-view-panel active">
+                    <div class="mockup-cards">
+                      <div class="mini-card">
+                        <div class="mini-card-title">👑 Institution Overview</div>
+                        <div class="metric-mini-row">
+                          <span>Students: <strong>1,450</strong></span>
+                          <span>Faculty: <strong>68</strong></span>
+                        </div>
+                        <div class="mini-card-stat">System Online (99.9%)</div>
+                      </div>
+                      <div class="mini-card">
+                        <div class="mini-card-title">📊 Global Attendance</div>
+                        <div class="mini-bar-chart">
+                          <div class="bar" style="height: 65%"></div>
+                          <div class="bar" style="height: 85%"></div>
+                          <div class="bar" style="height: 94%"></div>
+                          <div class="bar" style="height: 78%"></div>
+                        </div>
+                        <div class="mini-card-stat">91.8% Campus Average</div>
+                      </div>
+                      <div class="mini-card full">
+                        <div class="mini-card-title">📢 Broadcast Notice (All Departments)</div>
+                        <div class="mini-notice">Official announcement: Semester registration & schedule published.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Portal View 2: Teacher -->
+                  <div id="portal-view-teacher" class="portal-view-panel">
+                    <div class="mockup-cards">
+                      <div class="mini-card">
+                        <div class="mini-card-title">👩‍🏫 Batch Attendance Entry</div>
+                        <div class="mini-line-item">CS-402: 48/50 Present</div>
+                        <div class="mini-line-item">CS-301 (Python OOP): 52/52 Present</div>
+                        <div class="mini-card-stat">Logged for Today ✔</div>
+                      </div>
+                      <div class="mini-card">
+                        <div class="mini-card-title">📝 Marks & Assessment</div>
+                        <div class="mini-line-item">Internal 1: Graded (48 students)</div>
+                        <div class="mini-line-item">Semester Practical: Scheduled</div>
+                        <div class="mini-card-stat">Rankings Auto-Calculated</div>
+                      </div>
+                      <div class="mini-card full">
+                        <div class="mini-card-title">📢 Class Notice to CSE Batch</div>
+                        <div class="mini-notice">Assignment 3 submission deadline set for Friday 5:00 PM.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Portal View 3: Student -->
+                  <div id="portal-view-student" class="portal-view-panel">
+                    <div class="mockup-cards">
+                      <div class="mini-card">
+                        <div class="mini-card-title">🎓 My Attendance Status</div>
+                        <div class="progress-ring-box">
+                          <div class="mini-percent-big">92.4%</div>
+                          <span class="safe-tag">Eligible for Exams</span>
+                        </div>
+                        <div class="mini-card-stat">Required: >75%</div>
+                      </div>
+                      <div class="mini-card">
+                        <div class="mini-card-title">📈 Semester Grades</div>
+                        <div class="mini-line-item">Python Programming: <strong>A+</strong></div>
+                        <div class="mini-line-item">Database Management: <strong>O Grade</strong></div>
+                        <div class="mini-card-stat">Cumulative GPA: 8.9 / 10</div>
+                      </div>
+                      <div class="mini-card full">
+                        <div class="mini-card-title">📢 Student Notice Board</div>
+                        <div class="mini-notice">Campus Placement Drive & Technical Session commences next Monday.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="portal-hint-row">
+                    <span>💡 Click <strong>Admin</strong>, <strong>Teacher</strong>, or <strong>Student</strong> tabs to preview role dashboards!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section">
+      <div class="container">
+        <div class="section-header reveal-item">
+          <span class="section-tag">Work History</span>
+          <h2 class="section-title">Internship Experience</h2>
+          <p class="section-subtitle">Practical hands-on industry training and verified problem-solving experience</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="timeline-wrapper">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item reveal-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card spotlight-card">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <div class="timeline-header">
+                <div>
+                  <h3 class="role-title">Junior Python Software Developer Intern</h3>
+                  <div class="company-name">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span>Judah Code Technologies</span>
+                    <span class="badge-internship">Virtual Internship</span>
+                  </div>
+                </div>
+                <div class="timeline-period">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>May 25 – Jun 25, 2026</span>
+                </div>
+              </div>
+
+              <div class="timeline-body">
+                <p>
+                  Completed an intensive 1-month, part-time virtual internship applying <strong>Core Python</strong> fundamentals to real-world software assignments.
+                </p>
+                <ul class="timeline-achievements">
+                  <li>Mastered essential language features including data structures (lists, dicts, tuples), conditional branching, iterative loops, functions, and file I/O operations.</li>
+                  <li>Implemented defensive programming principles through comprehensive exception handling and edge-case management.</li>
+                  <li>Wrote and debugged Python programs, solving assigned problem statements and meeting every deadline across the internship.</li>
+                </ul>
+              </div>
+
+              <div class="timeline-footer">
+                <span class="timeline-tag">Core Python</span>
+                <span class="timeline-tag">OOP Concepts</span>
+                <span class="timeline-tag">File Handling</span>
+                <span class="timeline-tag">Exception Handling</span>
+                <span class="timeline-tag">Debugging</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item reveal-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card spotlight-card">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <div class="timeline-header">
+                <div>
+                  <h3 class="role-title">Python Developer Intern</h3>
+                  <div class="company-name">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span>Intern Infobyte</span>
+                    <span class="badge-internship">Virtual Internship</span>
+                    <span class="badge-highlight">★ Outstanding Performance</span>
+                  </div>
+                </div>
+                <div class="timeline-period">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Jun 10 – Jul 10, 2026</span>
+                </div>
+              </div>
+
+              <div class="timeline-body">
+                <p>
+                  Completed a 4-week, part-time Python Developer internship (overlapping the final 2 weeks at Judah Code Technologies), demonstrating strong time management and technical discipline.
+                </p>
+                <ul class="timeline-achievements">
+                  <li>Resolved real-world Python tasks, sharpening debugging, algorithm design, and problem-solving within set deadlines.</li>
+                  <li>Recognized for outstanding performance and dedication throughout the internship.</li>
+                </ul>
+              </div>
+
+              <div class="timeline-footer">
+                <span class="timeline-tag">Python</span>
+                <span class="timeline-tag">Problem Solving</span>
+                <span class="timeline-tag">Code Optimization</span>
+                <span class="timeline-tag">Task Execution</span>
+                <span class="timeline-tag">Time Management</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications & Education Section -->
+    <section id="education" class="section edu-cert-section">
+      <div class="container">
+        <div class="section-header reveal-item">
+          <span class="section-tag">Credentials</span>
+          <h2 class="section-title">Education & Certifications</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="edu-cert-grid">
+          <!-- Education Card -->
+          <div class="credential-card edu-card spotlight-card reveal-item">
+            <div class="card-spotlight-overlay" aria-hidden="true"></div>
+            <div class="credential-badge-icon">🎓</div>
+            <div class="credential-content">
+              <span class="credential-type">Degree Program</span>
+              <h3 class="credential-title">Bachelor of Engineering (B.E.)</h3>
+              <div class="credential-subtitle">Computer Science and Engineering</div>
+              <div class="credential-institution">
+                <strong>Anand Institute of Higher Technology</strong>
+              </div>
+              <div class="credential-meta">
+                <span class="credential-period">2023 – Expected 2027</span>
+                <span class="credential-location">Chennai, Tamil Nadu</span>
+              </div>
+              <p class="credential-desc">
+                Foundational computer science coursework covering data structures, algorithms, object-oriented concepts, database systems, and web technologies.
+              </p>
+            </div>
+          </div>
+
+          <!-- Certifications Column -->
+          <div class="certifications-list">
+            <!-- Cert 1 -->
+            <div class="credential-card cert-card spotlight-card reveal-item">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <div class="credential-badge-icon">📜</div>
+              <div class="credential-content">
+                <span class="credential-type">Professional Certificate</span>
+                <h3 class="credential-title">Junior Python Software Developer Intern</h3>
+                <div class="credential-subtitle">Judah Code Technologies</div>
+                <div class="credential-meta">
+                  <span class="credential-period">May 25 – Jun 25, 2026</span>
+                  <span class="cert-status-pill">Virtual Internship</span>
+                </div>
+                <p class="credential-desc">
+                  Certified for completing virtual internship modules in Core Python, loops, functions, file handling, and error handling.
+                </p>
+              </div>
+            </div>
+
+            <!-- Cert 2 -->
+            <div class="credential-card cert-card spotlight-card reveal-item">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <div class="credential-badge-icon">📜</div>
+              <div class="credential-content">
+                <span class="credential-type">Professional Certificate</span>
+                <h3 class="credential-title">Python Developer Intern</h3>
+                <div class="credential-subtitle">Intern Infobyte</div>
+                <div class="credential-meta">
+                  <span class="credential-period">Jun 10 – Jul 10, 2026</span>
+                  <span class="cert-status-pill highlight">Outstanding Performance</span>
+                </div>
+                <p class="credential-desc">
+                  Certified for completing real-world Python programming tasks, recognized for outstanding dedication and technical execution.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Connect Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="section-header reveal-item">
+          <span class="section-tag">Let's Connect</span>
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-subtitle">Interested in hiring me for entry-level software development roles? My inbox is always open.</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Details Cards -->
+          <div class="contact-info-col reveal-item">
+            <h3 class="contact-col-title">Direct Reach</h3>
+            <p class="contact-col-desc">Feel free to reach out via email, phone, or LinkedIn. I typically respond within 24 hours.</p>
+
+            <div class="contact-cards-stack">
+              <!-- Email Card -->
+              <div class="contact-action-card spotlight-card">
+                <div class="card-spotlight-overlay" aria-hidden="true"></div>
+                <div class="contact-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="contact-card-text">
+                  <span class="contact-label">Email Address</span>
+                  <a href="mailto:dmjebilin@gmail.com" class="contact-val">dmjebilin@gmail.com</a>
+                </div>
+                <button class="icon-btn copy-contact-btn" data-copy="dmjebilin@gmail.com" title="Copy Email">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+
+              <!-- Phone Card -->
+              <div class="contact-action-card spotlight-card">
+                <div class="card-spotlight-overlay" aria-hidden="true"></div>
+                <div class="contact-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div class="contact-card-text">
+                  <span class="contact-label">Phone Number</span>
+                  <a href="tel:+919080510225" class="contact-val">+91 9080510225</a>
+                </div>
+                <button class="icon-btn copy-contact-btn" data-copy="+919080510225" title="Copy Phone Number">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+
+              <!-- LinkedIn Card -->
+              <div class="contact-action-card spotlight-card">
+                <div class="card-spotlight-overlay" aria-hidden="true"></div>
+                <div class="contact-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </div>
+                <div class="contact-card-text">
+                  <span class="contact-label">LinkedIn Profile</span>
+                  <a href="https://linkedin.com/in/jebilin7" target="_blank" rel="noopener noreferrer" class="contact-val">linkedin.com/in/jebilin7</a>
+                </div>
+                <a href="https://linkedin.com/in/jebilin7" target="_blank" rel="noopener noreferrer" class="icon-btn" title="Open LinkedIn Profile">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+
+              <!-- Location Card -->
+              <div class="contact-action-card spotlight-card">
+                <div class="card-spotlight-overlay" aria-hidden="true"></div>
+                <div class="contact-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div class="contact-card-text">
+                  <span class="contact-label">Current Location</span>
+                  <span class="contact-val">Chennai, Tamil Nadu, India</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-col reveal-item">
+            <div class="form-wrapper-card spotlight-card">
+              <div class="card-spotlight-overlay" aria-hidden="true"></div>
+              <h3 class="form-title">Send a Quick Message</h3>
+              <p class="form-desc">Fill out this form to prepare a direct, pre-filled email to Jebilin.</p>
+
+              <form id="portfolio-contact-form" class="contact-form">
+                <div class="form-group">
+                  <label for="contact-name">Your Name</label>
+                  <input type="text" id="contact-name" name="name" required placeholder="e.g. Hiring Manager / Recruiter" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-email">Your Email</label>
+                  <input type="email" id="contact-email" name="email" required placeholder="name@company.com" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-subject">Subject</label>
+                  <input type="text" id="contact-subject" name="subject" required placeholder="Entry-Level Software Role / Interview Discussion" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-message">Message</label>
+                  <textarea id="contact-message" name="message" rows="4" required placeholder="Hi Jebilin, I reviewed your profile and projects..." class="form-input"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="#hero" class="brand-logo">
+          <span class="logo-mark">JD</span>
+          <span class="logo-text">Jebilin D.M</span>
+        </a>
+        <p class="footer-bio">B.E. Computer Science & Engineering Undergraduate (2023–2027) | Aspiring Software Developer</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#project-trizen">TrizenPhotos</a>
+        <a href="#project-studentsphere">StudentSphere</a>
+        <a href="#experience">Internships</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Jebilin D.M. All rights reserved.</p>
+        <p class="footer-credits">Crafted with modern HTML5, CSS3, & High-Performance Vanilla JS.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- Modal 1: TrizenPhotos Deep Dive Modal -->
+  <div id="trizen-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="trizen-modal-title">
+    <div class="modal-dialog modal-large">
+      <div class="modal-header">
+        <h3 id="trizen-modal-title" class="modal-title">TrizenPhotos – Platform Architecture</h3>
+        <button class="modal-close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="arch-summary">
+          <p>
+            <strong>TrizenPhotos</strong> is a full-stack photography and event gallery platform engineered by directing <strong>AI-assisted development tools</strong> to implement modern React 19, TypeScript, async FastAPI, MongoDB Atlas, and Pillow-based media pipelines.
+          </p>
+        </div>
+
+        <div class="portals-breakdown-grid">
+          <div class="portal-detail-card admin">
+            <div class="portal-icon">🔐</div>
+            <h4>1. PIN-Protected Client Portals</h4>
+            <ul>
+              <li>Slug routing (e.g. <code>/gallery/wedding-2026</code>)</li>
+              <li>4-digit client PIN verification</li>
+              <li>Zero friction (no sign-up needed for guests)</li>
+              <li>Direct high-resolution photo download zip</li>
+            </ul>
+          </div>
+
+          <div class="portal-detail-card teacher">
+            <div class="portal-icon">⚡</div>
+            <h4>2. Async FastAPI Backend</h4>
+            <ul>
+              <li>High-speed async Python REST endpoints</li>
+              <li>JWT token authentication for studio team</li>
+              <li>MongoDB Atlas connection with indexing</li>
+              <li>Sub-150ms average response time</li>
+            </ul>
+          </div>
+
+          <div class="portal-detail-card student">
+            <div class="portal-icon">🖼️</div>
+            <h4>3. Pillow Thumbnail Pipeline</h4>
+            <ul>
+              <li>Automated compression & thumbnail generation</li>
+              <li>Reduced gallery payload from 4MB to ~130KB</li>
+              <li>Fast responsive masonry grid in React 19</li>
+              <li>Multi-device cached asset delivery</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="workflow-highlight-box">
+          <h4>💡 AI-Assisted Engineering Workflow</h4>
+          <p>
+            Jebilin directed AI coding tools using structured prompt engineering to generate FastAPI endpoints, React 19 hooks, and MongoDB Atlas queries, then manually audited, tested, and resolved edge cases:
+          </p>
+          <div class="workflow-steps-row">
+            <div class="wf-step">
+              <span class="wf-num">1</span>
+              <span>Requirements & Prompt Formulation</span>
+            </div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-step">
+              <span class="wf-num">2</span>
+              <span>AI Code Generation</span>
+            </div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-step">
+              <span class="wf-num">3</span>
+              <span>Rigorous Debugging & Testing</span>
+            </div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-step">
+              <span class="wf-num">4</span>
+              <span>Vercel & Render Deployment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://trizenphotos.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Open Live App (trizenphotos.vercel.app) ↗
+        </a>
+        <button class="btn btn-outline" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: StudentSphere Architecture Deep-Dive Modal -->
+  <div id="arch-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="arch-modal-title">
+    <div class="modal-dialog modal-large">
+      <div class="modal-header">
+        <h3 id="arch-modal-title" class="modal-title">StudentSphere – System Architecture & Portals</h3>
+        <button class="modal-close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="arch-summary">
+          <p>
+            <strong>StudentSphere</strong> is a full-stack college management website with 3 role-based portals, independently designed and built using <strong>AI-assisted development tools</strong> to handle requirements, coding, integration, and debugging.
+          </p>
+        </div>
+
+        <div class="portals-breakdown-grid">
+          <div class="portal-detail-card admin">
+            <div class="portal-icon">👑</div>
+            <h4>1. Admin Portal</h4>
+            <ul>
+              <li>Manage student & faculty registries</li>
+              <li>Configure departmental courses & semesters</li>
+              <li>Institution-wide broadcast notices</li>
+              <li>Global analytics on attendance & performance</li>
+            </ul>
+          </div>
+
+          <div class="portal-detail-card teacher">
+            <div class="portal-icon">👩‍🏫</div>
+            <h4>2. Teacher Portal</h4>
+            <ul>
+              <li>Daily batch attendance logging</li>
+              <li>Internal & semester marks entry</li>
+              <li>Individual student progress tracking</li>
+              <li>Department-specific notices</li>
+            </ul>
+          </div>
+
+          <div class="portal-detail-card student">
+            <div class="portal-icon">🎓</div>
+            <h4>3. Student Portal</h4>
+            <ul>
+              <li>Real-time attendance percentage breakdown</li>
+              <li>Grade sheets and assessment feedback</li>
+              <li>Direct view of institutional announcements</li>
+              <li>Profile & course schedule view</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="workflow-highlight-box">
+          <h4>💡 AI-Assisted Engineering Workflow</h4>
+          <p>
+            AI coding tools were directed through prompt-driven instructions to construct React components, server routes, and MongoDB schemas, followed by manual test verification and debugging:
+          </p>
+          <div class="workflow-steps-row">
+            <div class="wf-step">
+              <span class="wf-num">1</span>
+              <span>Requirements & Prompt Formulation</span>
+            </div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-step">
+              <span class="wf-num">2</span>
+              <span>AI Code Generation</span>
+            </div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-step">
+              <span class="wf-num">3</span>
+              <span>Rigorous Debugging & Testing</span>
+            </div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-step">
+              <span class="wf-num">4</span>
+              <span>Git Tracking & Vercel Deployment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://web-service-lake.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Open Live App (web-service-lake.vercel.app) ↗
+        </a>
+        <button class="btn btn-outline" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Resume Viewer / Print Modal (1-to-1 with attached PDF) -->
+  <div id="resume-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="resume-modal-title">
+    <div class="modal-dialog modal-resume">
+      <div class="modal-header">
+        <h3 id="resume-modal-title" class="modal-title">Resume — Jebilin D.M</h3>
+        <div class="modal-header-actions">
+          <button id="print-resume-btn" class="btn btn-primary btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print / Save as PDF
+          </button>
+          <button class="modal-close-btn" data-close-modal aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body print-area" id="resume-print-area">
+        <!-- Resume Paper Layout -->
+        <div class="resume-sheet">
+          <header class="resume-sheet-header">
+            <h1 class="resume-name">JEBILIN D.M</h1>
+            <div class="resume-contact-bar">
+              <span>+91 9080510225</span> • 
+              <span>dmjebilin@gmail.com</span> • 
+              <span>linkedin.com/in/jebilin7</span> • 
+              <span>Chennai, India</span>
+            </div>
+          </header>
+
+          <div class="resume-divider"></div>
+
+          <section class="resume-section">
+            <h2 class="resume-sec-title">PROFESSIONAL SUMMARY</h2>
+            <p class="resume-text">
+              Final-year Computer Science and Engineering undergraduate (2023–2027) with a foundation in Python, HTML, and CSS. Independently built a full-stack college management website (React, Python, MongoDB) using AI-assisted development tools to handle requirements, coding, and integration. Completed two Python development internships, strengthening core programming and debugging skills through hands-on tasks. Quick learner with strong problem-solving and communication skills, seeking an entry-level Software Development role.
+            </p>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-sec-title">TECHNICAL SKILLS</h2>
+            <ul class="resume-list">
+              <li><strong>Languages & Core:</strong> Python (basic, incl. OOP concepts), HTML5, CSS3, SQL (basic – DDL, DML, DQL, DCL, TCL)</li>
+              <li><strong>AI-Assisted Development:</strong> Built full-stack features (React.js, MongoDB) using AI coding tools for implementation and debugging</li>
+              <li><strong>Familiarity with:</strong> Git/GitHub, debugging fundamentals, prompt-driven development workflow</li>
+              <li><strong>Soft Skills:</strong> Problem-Solving, Communication, Time Management, Adaptability, Leadership</li>
+            </ul>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-sec-title">PROJECTS</h2>
+            
+            <!-- Project 1 in Resume -->
+            <div class="resume-entry">
+              <div class="entry-head">
+                <span class="entry-title"><strong>StudentSphere – College Management Website</strong></span>
+                <span class="entry-date">Live: web-service-lake.vercel.app</span>
+              </div>
+              <div class="entry-sub">Technologies: React.js, Python, MongoDB | Built using AI-assisted development tools</div>
+              <ul class="resume-list">
+                <li>Independently designed and built a full-stack college management website with 3 role-based portals: Admin, Teacher, and Student.</li>
+                <li>Directed AI-assisted coding tools to implement the React.js frontend, Python backend, and MongoDB database, managing prompts, testing, and integration.</li>
+                <li>Structured attendance, marks, and notice modules across all 3 portals, verifying and debugging AI-generated code before deployment.</li>
+                <li>Tracked all changes using Git and delivered a working, publicly hosted prototype end-to-end.</li>
+              </ul>
+            </div>
+
+            <!-- Project 2 in Resume -->
+            <div class="resume-entry">
+              <div class="entry-head">
+                <span class="entry-title"><strong>TrizenPhotos – Full-Stack Photography & Gallery Platform</strong></span>
+                <span class="entry-date">Live: trizenphotos.vercel.app</span>
+              </div>
+              <div class="entry-sub">Technologies: React 19, TypeScript, FastAPI, Python, MongoDB Atlas, JWT, Vercel, Render | Built using AI-assisted development tools</div>
+              <ul class="resume-list">
+                <li>Directed AI-assisted tools to engineer an event photo delivery system with real-time upload, team curation, and client delivery.</li>
+                <li>Designed secure, PIN-protected client portals with slug routing, removing account creation friction for end users.</li>
+                <li>Built async REST APIs with FastAPI, covering JWT authentication, role-based workflows, and Pillow-based thumbnail generation.</li>
+                <li>Automated deployment across Vercel and Render, verifying 100% passing integration and unit tests.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-sec-title">INTERNSHIP EXPERIENCE</h2>
+            <div class="resume-entry">
+              <div class="entry-head">
+                <span class="entry-title"><strong>Junior Python Software Developer Intern</strong> | Judah Code Technologies</span>
+                <span class="entry-date">May 25 – Jun 25, 2026</span>
+              </div>
+              <ul class="resume-list">
+                <li>Completed a 1-month, part-time virtual internship applying Core Python: data types, conditionals, loops, functions, file handling, exceptions.</li>
+                <li>Wrote and debugged Python programs, solving assigned problem statements and meeting every deadline.</li>
+              </ul>
+            </div>
+
+            <div class="resume-entry">
+              <div class="entry-head">
+                <span class="entry-title"><strong>Python Developer Intern</strong> | Intern Infobyte</span>
+                <span class="entry-date">Jun 10 – Jul 10, 2026</span>
+              </div>
+              <ul class="resume-list">
+                <li>Completed a 4-week, part-time internship (overlapping the final 2 weeks at Judah Code Technologies).</li>
+                <li>Resolved real-world Python tasks, sharpening debugging and problem-solving within set deadlines.</li>
+                <li>Recognized for outstanding performance and dedication throughout the internship.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-sec-title">CERTIFICATIONS</h2>
+            <ul class="resume-list">
+              <li><strong>Junior Python Software Developer Intern</strong> – Judah Code Technologies (Virtual Internship, May 25–Jun 25, 2026)</li>
+              <li><strong>Python Developer Intern</strong> – Intern Infobyte (Virtual Internship, Jun 10–Jul 10, 2026)</li>
+            </ul>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-sec-title">EDUCATION</h2>
+            <div class="resume-entry">
+              <div class="entry-head">
+                <span class="entry-title"><strong>B.E., Computer Science and Engineering</strong></span>
+                <span class="entry-date">2023 – Expected 2027</span>
+              </div>
+              <div class="entry-sub">Anand Institute of Higher Technology</div>
+            </div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-sec-title">LANGUAGES KNOWN</h2>
+            <p class="resume-text">Tamil, English</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll-to-Top Floating Button with Circular Progress Ring -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top of page" title="Scroll to top">
+    <svg class="progress-ring" width="44" height="44" viewBox="0 0 44 44">
+      <circle class="progress-ring-bg" cx="22" cy="22" r="18"></circle>
+      <circle id="progress-indicator" class="progress-ring-circle" cx="22" cy="22" r="18"></circle>
+    </svg>
+    <svg class="arrow-up-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
