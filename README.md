@@ -1,27 +1,31 @@
-# 🚀 Jebilin D.M — Professional Portfolio Website
+# 🚀 Jebilin D.M — React Developer Portfolio Website
 
-A personal developer portfolio designed and built for **Jebilin D.M**, based directly on his updated resume as a final-year Computer Science and Engineering undergraduate (2023–2027) at **Anand Institute of Higher Technology**, Chennai.
+A personal developer portfolio designed and built in **React 18 & Vite** for **Jebilin D.M**, based directly on his updated resume as a final-year Computer Science and Engineering undergraduate (2023–2027) at **Anand Institute of Higher Technology**, Chennai.
 
 ---
 
 ## 🌟 Highlights & Key Features
 
+- **Built with Pure React & Vite**:
+  - Modular component hierarchy (`Hero`, `About`, `Skills`, `Projects`, `Experience`, `Education`, `Contact`, `Modals`, `BackgroundCanvas`, `Navbar`, `Footer`, `BackToTop`).
+  - Strict adherence to modern React state management, hooks (`useState`, `useEffect`, `useRef`), and centralized resume data store in `src/data/resumeData.js`.
+
 - **Personal Brand & Hero Section**:
-  - Dynamic typewriter effect showcasing core roles (*Computer Science Undergraduate*, *Aspiring Software Developer*, *Python & FastAPI Developer*, *AI-Assisted Web Builder*).
+  - Dynamic typewriter effect showcasing core roles (*Aspiring Software Developer*, *Python & SQL Developer*, *AI-Assisted Web Builder*, *TrizenPhotos & StudentSphere Creator*).
   - Status badge indicating availability for entry-level Software Development roles.
-  - Interactive Python terminal code mockup displaying developer properties.
+  - Interactive Python terminal code runner (`developer_profile.py`) with a live "▶ Run" button that executes and verifies profile instantiation.
   - One-click copy buttons for email (`dmjebilin@gmail.com`) and phone (`+91 9080510225`) with toast notifications.
   - Direct link to LinkedIn (`https://linkedin.com/in/jebilin7`).
 
 - **Dual Star Projects Spotlight**:
   1. **TrizenPhotos – Full-Stack Photography & Gallery Platform** (`https://trizenphotos.vercel.app`):
-     - Built with **React 19, TypeScript, FastAPI, Python, MongoDB Atlas, JWT, Pillow, Vercel, Render**.
+     - Engineered with **React 19, TypeScript, FastAPI, Python, MongoDB Atlas, JWT, Pillow, Vercel, Render**.
      - Real-time photo upload, team curation, and PIN-protected client portals with slug routing.
      - Async REST APIs with Pillow-based thumbnail generation.
-     - Interactive preview tabs: Client PIN Portal, Curated Gallery Grid, FastAPI Specs.
+     - Interactive preview tabs: *PIN Access*, *Client Gallery*, *FastAPI Routes*.
   2. **StudentSphere – College Management Website** (`https://web-service-lake.vercel.app`):
-     - Built with **React.js, Python, MongoDB**.
-     - 3 role-based portals (**Admin**, **Teacher**, and **Student**) with attendance, marks, and notices modules.
+     - Built with **React.js, Python, MongoDB, Role-Based Access, Git, Vercel**.
+     - 3 role-based portals (**Admin**, **Teacher**, and **Student**) with attendance, marks, and notice modules.
      - Interactive preview switcher between the 3 portals.
 
 - **Internship Experience Timeline**:
@@ -29,20 +33,21 @@ A personal developer portfolio designed and built for **Jebilin D.M**, based dir
   - **Python Developer Intern** @ Intern Infobyte (Jun 10 – Jul 10, 2026) — recognized with *Outstanding Performance*.
 
 - **Skills & Tooling Matrix**:
+  - Filterable by: *All Skills*, *Languages & Core*, *AI-Assisted Dev*, *Workflow & Tools*, *Soft Skills*.
   - **Languages & Core**: Python (basic, incl. OOP concepts), HTML5, CSS3, SQL (basic – DDL, DML, DQL, DCL, TCL).
-  - **AI-Assisted Development**: Built full-stack features (React 19, TypeScript, FastAPI, MongoDB Atlas) using AI coding tools for implementation and debugging.
+  - **AI-Assisted Development**: Directing AI coding tools for full-stack implementation, schema structuring, and rigorous code verification/debugging.
   - **Workflow & Tools**: Prompt-Driven Development workflow, Debugging fundamentals, Git & GitHub, Vercel & Render cloud deployments.
-  - **Professional & Soft Skills**: Problem-Solving, Communication, Time Management, Adaptability, Leadership.
+  - **Professional & Soft Skills**: Problem-Solving, Communication, Time Management, Adaptability, Leadership, Quick Learner.
 
 - **Education & Verified Certifications**:
-  - Degree card for B.E. Computer Science and Engineering (2023–2027) at Anand Institute of Higher Technology.
+  - B.E. Computer Science and Engineering (2023–2027) at Anand Institute of Higher Technology.
   - Verified internship completion certificate badges.
 
 - **Interactive Resume Modal with Print/PDF Export**:
   - Dedicated full-view modal containing a clean, 1-to-1 formatted resume matching your official PDF.
   - One-click **"Print / Save as PDF"** button with clean `@media print` layout.
 
-- **Modern Design & Dark/Light Theme**:
+- **Design System & Dark/Light Theme**:
   - Hardware-accelerated constellation particle canvas background that gently responds to cursor proximity.
   - Spotlight hover effect on cards.
   - Smooth dark/light theme switching with `localStorage` persistence.
@@ -54,49 +59,68 @@ A personal developer portfolio designed and built for **Jebilin D.M**, based dir
 
 ```
 C:\Users\dmjeb\Videos\portfolio\
-├── index.html       # Semantic HTML5 markup with dual projects and resume modal
-├── styles.css       # Design tokens, dark/light themes, animations, print rules
-├── script.js        # Typewriter, theme toggling, dual simulators, particle canvas
-├── netlify.toml     # Netlify security headers and asset caching rules
-└── README.md        # Documentation and deployment instructions
+├── index.html                  # Vite HTML entrypoint with font imports
+├── vite.config.js              # Vite React configuration
+├── package.json                # React 18, React DOM, Vite dependencies
+├── netlify.toml                # Netlify build configuration & SPA rewrite rules
+├── .gitignore                  # Git ignore rules for node_modules and dist
+├── dist/                       # Production build output
+└── src/
+    ├── main.jsx                # React root entrypoint
+    ├── App.jsx                 # Master application component & layout state
+    ├── index.css               # Complete responsive CSS design system
+    ├── data/
+    │   └── resumeData.js       # Centralized resume data store
+    └── components/
+        ├── BackgroundCanvas.jsx# Particle constellation background
+        ├── Navbar.jsx          # Sticky navbar with mobile drawer & theme switcher
+        ├── Hero.jsx            # Hero banner, typewriter, and Python runner
+        ├── About.jsx           # Background, AI-assisted philosophy, metrics
+        ├── Skills.jsx          # Filterable skills & soft skills grid
+        ├── Projects.jsx        # Dual project showcase with interactive tabs
+        ├── Experience.jsx      # Internship timeline
+        ├── Education.jsx       # Degree coursework and credentials
+        ├── Contact.jsx         # Direct contact cards and pre-filled email form
+        ├── Footer.jsx          # Footer credits & status
+        ├── Modals.jsx          # Architecture modals and 1-to-1 printable resume
+        └── BackToTop.jsx       # Circular SVG scroll progress indicator
 ```
 
 ---
 
-## 💻 How to Run Locally
+## 🛠️ Development & Build Commands
 
-### Method 1: Direct Browser Launch
-Double-click `index.html` in your file explorer, or right-click and choose **Open with > Chrome / Edge / Firefox**.
+Inside `C:\Users\dmjeb\Videos\portfolio`:
 
-### Method 2: Python Local Server
-Open PowerShell in this folder and run:
 ```bash
-python -m http.server 8000
+# 1. Install dependencies
+npm install
+
+# 2. Start local development server (with hot module reload)
+npm run dev
+
+# 3. Create optimized production build
+npm run build
+
+# 4. Preview the production build locally
+npm run preview
 ```
-Then open `http://localhost:8000` in your web browser.
 
 ---
 
-## 🚀 How to Deploy to Netlify
+## 🚀 How to Deploy on Netlify
 
-### Option 1: Netlify Drop (Fastest — 30 Seconds)
-1. Go to **[https://app.netlify.com/drop](https://app.netlify.com/drop)**
-2. Drag and drop this folder `C:\Users\dmjeb\Videos\portfolio` (or the zip file) directly onto the page.
-3. Your site is immediately live with free SSL!
+### Option 1: Netlify Git Integration (Recommended)
+1. Push this repository to your GitHub account (`github.com/your-username/portfolio`).
+2. Log in to [Netlify](https://app.netlify.com).
+3. Click **"Add new site"** > **"Import an existing project"** > Choose **GitHub**.
+4. Select your portfolio repository. Netlify will automatically detect `netlify.toml`:
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+5. Click **"Deploy site"**!
 
-### Option 2: Connect with GitHub
-1. Create a new repository on [GitHub](https://github.com/new).
-2. Push your files:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: complete portfolio for Jebilin D.M"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/<repo-name>.git
-   git push -u origin main
-   ```
-3. Import the repository into Netlify for automatic deployments on every `git push`.
-
----
-
-© 2026 Jebilin D.M. All rights reserved.
+### Option 2: Netlify Drop (Instant Drag-and-Drop)
+1. Run `npm run build` to generate the `dist/` folder.
+2. Go to [app.netlify.com/drop](https://app.netlify.com/drop).
+3. Drag and drop the `dist/` folder directly into the browser.
+4. Your React portfolio will be live on the web in seconds!

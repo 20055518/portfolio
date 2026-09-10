@@ -1,11 +1,10 @@
 /* ==========================================================================
-   Jebilin D.M Portfolio - Fully Responsive Design System & Stylesheet
-   Showcasing TrizenPhotos & StudentSphere | Engineered for All Devices
+   Jebilin D.M Portfolio - React Design System & Responsive Styles
+   Engineered for Mobile (320px+), Tablets, Laptops & Desktops
    ========================================================================== */
 
 /* --- CSS Variables & Design Tokens --- */
 :root {
-  /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-heading: 'Outfit', var(--font-sans);
   --font-mono: 'JetBrains Mono', monospace;
@@ -101,22 +100,6 @@
   scrollbar-color: #cbd5e1 #f8fafc;
 }
 
-/* Scrollbar WebKit Fallback */
-@supports not (scrollbar-color: auto) {
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--bg-page);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 4px;
-  }
-}
-
-/* --- Global Reset & Fluid Layout Base --- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -163,7 +146,7 @@ img, svg {
   vertical-align: middle;
 }
 
-/* --- Background Canvas & Ambient Orbs --- */
+/* Background Canvas & Ambient Orbs */
 .bg-canvas {
   position: fixed;
   top: 0;
@@ -212,7 +195,6 @@ img, svg {
   background: radial-gradient(circle, #10b981 0%, rgba(16, 185, 129, 0) 70%);
 }
 
-/* Fluid Container */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -222,7 +204,6 @@ img, svg {
   z-index: 1;
 }
 
-/* Typography Gradient */
 .text-gradient {
   background: linear-gradient(135deg, #6366f1 0%, #06b6d4 50%, #10b981 100%);
   -webkit-background-clip: text;
@@ -230,7 +211,6 @@ img, svg {
   background-clip: text;
 }
 
-/* Sections */
 .section {
   padding: clamp(3.5rem, 7vw, 5.5rem) 0;
   position: relative;
@@ -281,20 +261,7 @@ img, svg {
   border-radius: var(--radius-full);
 }
 
-/* --- Scroll Reveal Animations --- */
-.reveal-item {
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-item.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Interactive Spotlight Card Effect --- */
+/* Spotlight Card Effect */
 .spotlight-card {
   position: relative;
   background: var(--bg-card);
@@ -334,7 +301,7 @@ img, svg {
   z-index: 2;
 }
 
-/* --- Buttons & Touch Targets --- */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -422,9 +389,7 @@ img, svg {
   transform: scale(1.04);
 }
 
-/* ==========================================================================
-   Header & Navigation
-   ========================================================================== */
+/* Header & Nav */
 .site-header {
   position: sticky;
   top: 0;
@@ -512,13 +477,6 @@ img, svg {
   gap: 0.65rem;
 }
 
-/* Theme Toggle Icons */
-.theme-toggle .sun-icon { display: none; }
-.theme-toggle .moon-icon { display: block; }
-[data-theme="light"] .theme-toggle .sun-icon { display: block; }
-[data-theme="light"] .theme-toggle .moon-icon { display: none; }
-
-/* Mobile Hamburger Toggle */
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -567,9 +525,7 @@ img, svg {
   color: var(--primary);
 }
 
-/* ==========================================================================
-   Hero Section
-   ========================================================================== */
+/* Hero Section */
 .hero-section {
   padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 5.5rem);
   position: relative;
@@ -713,7 +669,7 @@ img, svg {
   margin-left: 0.25rem;
 }
 
-/* Hero Profile Stage & Floating Orbiting Badges */
+/* Orbit Badges & Hero Stage */
 .profile-stage {
   position: relative;
   padding: 1.5rem;
@@ -801,7 +757,6 @@ img, svg {
   50% { transform: translateY(6px); }
 }
 
-/* Profile Card */
 .profile-card-glass {
   padding: clamp(1.25rem, 3.5vw, 1.85rem);
   width: 100%;
@@ -980,9 +935,7 @@ img, svg {
   border: 1px solid var(--border-subtle);
 }
 
-/* ==========================================================================
-   About Section & Metric Counters
-   ========================================================================== */
+/* About Section */
 .about-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
@@ -1073,9 +1026,7 @@ img, svg {
   color: var(--text-muted);
 }
 
-/* ==========================================================================
-   Technical Skills Section & Category Filter
-   ========================================================================== */
+/* Skills Section */
 .skills-filter-nav {
   display: flex;
   justify-content: center;
@@ -1119,10 +1070,6 @@ img, svg {
 .skill-category-card {
   padding: clamp(1.5rem, 3vw, 2.25rem);
   transition: all var(--transition-base);
-}
-
-.skill-category-card.hidden {
-  display: none;
 }
 
 .category-header {
@@ -1252,9 +1199,7 @@ img, svg {
   color: var(--text-muted);
 }
 
-/* ==========================================================================
-   Featured Projects Section (Dual Showcase)
-   ========================================================================== */
+/* Projects Stack (Dual Showcase) */
 .projects-stack {
   display: flex;
   flex-direction: column;
@@ -1412,7 +1357,7 @@ img, svg {
   gap: 0.85rem;
 }
 
-/* Project Visual Mockup Frame */
+/* Mockup Frames & Simulators */
 .project-mockup {
   display: flex;
   align-items: center;
@@ -1530,7 +1475,6 @@ img, svg {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* TrizenPhotos Specific Interactive Mockups */
 .pin-portal-box {
   background: var(--bg-surface);
   border: 1px dashed rgba(99, 102, 241, 0.4);
@@ -1635,7 +1579,6 @@ img, svg {
   border-radius: 3px;
 }
 
-/* StudentSphere Specific Mockups */
 .mockup-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1733,9 +1676,7 @@ img, svg {
   padding-top: 0.35rem;
 }
 
-/* ==========================================================================
-   Experience Section (Timeline)
-   ========================================================================== */
+/* Timeline */
 .timeline-wrapper {
   position: relative;
   max-width: 860px;
@@ -1883,9 +1824,7 @@ img, svg {
   border-radius: var(--radius-sm);
 }
 
-/* ==========================================================================
-   Education & Certifications
-   ========================================================================== */
+/* Credentials */
 .edu-cert-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1982,9 +1921,7 @@ img, svg {
   gap: 1.5rem;
 }
 
-/* ==========================================================================
-   Contact Section
-   ========================================================================== */
+/* Contact */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2099,7 +2036,7 @@ img, svg {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   color: var(--text-primary);
-  font-size: 16px; /* Prevents auto-zoom on iOS */
+  font-size: 16px;
   outline: none;
   transition: all var(--transition-fast);
 }
@@ -2114,9 +2051,7 @@ img, svg {
   font-size: 0.875rem;
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+/* Footer */
 .site-footer {
   border-top: 1px solid var(--border-subtle);
   background: var(--bg-surface);
@@ -2173,9 +2108,7 @@ img, svg {
   color: var(--text-muted);
 }
 
-/* ==========================================================================
-   Modals
-   ========================================================================== */
+/* Modals */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -2186,17 +2119,12 @@ img, svg {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(0.75rem, 3vw, 1.5rem);
-  opacity: 0;
-  transition: opacity var(--transition-base);
-}
-
-.modal-backdrop.show {
-  display: flex;
   opacity: 1;
+  transition: opacity var(--transition-base);
 }
 
 .modal-dialog {
@@ -2209,12 +2137,12 @@ img, svg {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transform: scale(0.95);
-  transition: transform var(--transition-base);
+  animation: scale-up 0.25s ease;
 }
 
-.modal-backdrop.show .modal-dialog {
-  transform: scale(1);
+@keyframes scale-up {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .modal-large { max-width: 820px; }
@@ -2275,7 +2203,6 @@ img, svg {
   flex-wrap: wrap;
 }
 
-/* Modal Content: Architecture */
 .arch-summary p {
   color: var(--text-secondary);
   margin-bottom: 1.25rem;
@@ -2376,9 +2303,7 @@ img, svg {
   font-weight: 800;
 }
 
-/* ==========================================================================
-   Resume Sheet (Clean Printable Layout)
-   ========================================================================== */
+/* Resume Paper */
 .resume-sheet {
   background: #ffffff;
   color: #111827;
@@ -2475,9 +2400,7 @@ img, svg {
   color: #4b5563;
 }
 
-/* ==========================================================================
-   Scroll-To-Top Circular Progress Button
-   ========================================================================== */
+/* Scroll-to-Top Button */
 .back-to-top {
   position: fixed;
   bottom: clamp(1.25rem, 3vw, 2rem);
@@ -2542,9 +2465,7 @@ img, svg {
   z-index: 2;
 }
 
-/* ==========================================================================
-   Toast Notifications
-   ========================================================================== */
+/* Toast */
 .toast {
   position: fixed;
   bottom: 2rem;
@@ -2558,21 +2479,17 @@ img, svg {
   box-shadow: var(--shadow-lg), 0 0 20px var(--primary-glow);
   font-size: 0.85rem;
   font-weight: 500;
-  display: none;
   z-index: 2000;
   max-width: 90vw;
   text-align: center;
-  transition: all 0.3s ease;
+  animation: toast-in 0.3s ease forwards;
 }
 
-.toast.show {
-  display: block;
-  transform: translateX(-50%) translateY(0);
+@keyframes toast-in {
+  to { transform: translateX(-50%) translateY(0); }
 }
 
-/* ==========================================================================
-   Print Styles for Resume Export
-   ========================================================================== */
+/* Print */
 @media print {
   body * {
     visibility: hidden;
@@ -2598,11 +2515,7 @@ img, svg {
   }
 }
 
-/* ==========================================================================
-   RESPONSIVE BREAKPOINTS (ALL DEVICES)
-   ========================================================================== */
-
-/* 1. Large Laptops / Landscape Tablets (max-width: 1024px) */
+/* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .hero-container {
     gap: 2.5rem;
@@ -2615,7 +2528,6 @@ img, svg {
   .badge-git { right: -10px; }
 }
 
-/* 2. Tablets & Small Laptops (max-width: 992px) */
 @media (max-width: 992px) {
   .hero-container {
     grid-template-columns: 1fr;
@@ -2640,11 +2552,7 @@ img, svg {
     margin-right: auto;
   }
 
-  .hero-cta-group {
-    justify-content: center;
-  }
-
-  .hero-meta-pills {
+  .hero-cta-group, .hero-meta-pills {
     justify-content: center;
   }
 
@@ -2654,35 +2562,16 @@ img, svg {
     width: 100%;
   }
 
-  .about-grid {
+  .about-grid, .skills-category-grid, .edu-cert-grid, .contact-grid, .portals-breakdown-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
   }
 
   .project-showcase-card {
     grid-template-columns: 1fr;
     padding: clamp(1.5rem, 3.5vw, 2.25rem);
   }
-
-  .skills-category-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .edu-cert-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .portals-breakdown-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
-/* 3. Medium & Small Tablets / Mobile Landscape (max-width: 768px) */
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;
@@ -2693,7 +2582,7 @@ img, svg {
   }
 
   .orbit-badge {
-    display: none; /* Hide floating badges to avoid screen overflow on mobile */
+    display: none;
   }
 
   .profile-stage {
@@ -2723,7 +2612,6 @@ img, svg {
   }
 }
 
-/* 4. Smartphones (max-width: 600px) */
 @media (max-width: 600px) {
   .skills-filter-nav {
     overflow-x: auto;
@@ -2738,11 +2626,7 @@ img, svg {
     flex-shrink: 0;
   }
 
-  .soft-skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .mockup-cards {
+  .soft-skills-grid, .mockup-cards, .about-metrics-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2759,10 +2643,6 @@ img, svg {
   .portal-pill, .trizen-pill {
     flex: 1;
     text-align: center;
-  }
-
-  .about-metrics-grid {
-    grid-template-columns: 1fr;
   }
 
   .timeline-wrapper::before {
@@ -2790,33 +2670,19 @@ img, svg {
   }
 }
 
-/* 5. Small Mobile Screens & Foldables (max-width: 480px) */
 @media (max-width: 480px) {
-  .hero-cta-group {
+  .hero-cta-group, .hero-meta-pills {
     flex-direction: column;
     width: 100%;
   }
 
-  .hero-cta-group .btn {
-    width: 100%;
-  }
-
-  .hero-meta-pills {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-meta-pills .meta-pill {
+  .hero-cta-group .btn, .hero-meta-pills .meta-pill {
     width: 100%;
     justify-content: center;
   }
 
-  .profile-header {
+  .profile-header, .profile-title-block {
     flex-direction: column;
-    text-align: center;
-  }
-
-  .profile-title-block {
     text-align: center;
   }
 
@@ -2830,18 +2696,12 @@ img, svg {
     gap: 0.75rem;
   }
 
-  .contact-card-icon {
-    width: 40px;
-    height: 40px;
-  }
-
   .modal-backdrop {
     padding: 0.5rem;
   }
 
   .modal-dialog {
     max-height: 96vh;
-    border-radius: var(--radius-md);
   }
 
   .modal-header {
@@ -2867,7 +2727,6 @@ img, svg {
   }
 }
 
-/* 6. Ultra-narrow Devices (max-width: 340px) */
 @media (max-width: 340px) {
   html {
     font-size: 14px;
