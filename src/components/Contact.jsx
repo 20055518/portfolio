@@ -12,32 +12,80 @@ export default function Contact({ resumeData, showToast }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+
   const handleCopy = (text, label) => {
     navigator.clipboard.writeText(text);
     showToast(`${label} copied to clipboard!`);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       showToast('Please fill in your name, email, and message.');
       return;
     }
 
-    const subject = encodeURIComponent(formData.subject || `Portfolio Inquiry from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
-    window.open(`mailto:${resumeData.personal.email}?subject=${subject}&body=${body}`, '_blank');
+    const subjectText = formData.subject.trim() || `Portfolio Inquiry from ${formData.name}`;
+    const mailBody = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+
+    // Try Formspree free form submission endpoint
+    try {
+      const response = await fetch(`https://formspree.io/f/mqaeewge`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _replyto: formData.email,
+          subject: subjectText,
+          message: formData.message,
+          to: resumeData.personal.email
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        showToast('Message sent successfully! Thank you for reaching out.');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setIsSubmitting(false);
+        return;
+      }
+    } catch (err) {
+      console.log('Formspree dispatch error, falling back to email client...', err);
+    }
+
+    // Fallback 1: mailto link activation
+    const mailtoUrl = `mailto:${resumeData.personal.email}?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(mailBody)}`;
+    
+    // Create invisible anchor to reliably trigger default mail app without popup blocker
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.target = '_self';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setSubmitStatus('success');
     showToast('Opening your email client to send message...');
+    setIsSubmitting(false);
+  };
 
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+  // Dedicated Gmail Direct Web Compose helper
+  const handleOpenGmail = () => {
+    const subject = encodeURIComponent(formData.subject || `Portfolio Inquiry from ${formData.name || 'Visitor'}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name || 'Visitor'}\nEmail: ${formData.email || ''}\n\nMessage:\n${formData.message || ''}`
+    );
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${resumeData.personal.email}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -205,13 +253,28 @@ export default function Contact({ resumeData, showToast }) {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-full">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  Dispatch Email Message
-                </button>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                  <button type="submit" className="btn btn-primary btn-full" disabled={isSubmitting}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    {isSubmitting ? 'Sending Message...' : 'Send Message'}
+                  </button>
+
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-full"
+                    onClick={handleOpenGmail}
+                    title="Open draft directly in Gmail in browser"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Compose in Gmail (Browser)
+                  </button>
+                </div>
               </form>
             </div>
           </div>

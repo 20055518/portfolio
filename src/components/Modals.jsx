@@ -56,6 +56,9 @@ export default function Modals({ activeModal, closeModal, resumeData }) {
               <p>
                 <strong>TrizenPhotos</strong> is a production-grade event photography delivery platform engineered
                 to eliminate end-user login friction through slug-based routing and secure PIN authentication.
+                <span style={{ display: 'inline-block', marginLeft: '0.4rem', background: 'rgba(99, 102, 241, 0.15)', color: 'var(--primary)', border: '1px solid rgba(99, 102, 241, 0.3)', padding: '0.1rem 0.5rem', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 600 }}>
+                  Demo Access Password / PIN: 482917
+                </span>
               </p>
 
               <div className="workflow-highlight-box" style={{ marginBottom: '1.5rem' }}>
@@ -241,18 +244,31 @@ export default function Modals({ activeModal, closeModal, resumeData }) {
           <div className="modal-header">
             <h3 className="modal-title">Official Curriculum Vitae</h3>
             <div className="modal-header-actions">
+              <a
+                href="/Jebilin_DM_Resume.pdf"
+                download="Jebilin_DM_Resume.pdf"
+                className="btn btn-primary btn-sm"
+                title="Download verified official PDF resume"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download PDF
+              </a>
               <button
                 type="button"
-                className="btn btn-primary btn-sm"
+                className="btn btn-secondary btn-sm"
                 onClick={handlePrint}
-                title="Print or Save as PDF"
+                title="Print or Save as PDF via Browser"
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="6 9 6 2 18 2 18 9"></polyline>
                   <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                   <rect x="6" y="14" width="12" height="8"></rect>
                 </svg>
-                Print / Save PDF
+                Print
               </button>
               <button
                 type="button"
@@ -395,10 +411,23 @@ export default function Modals({ activeModal, closeModal, resumeData }) {
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-primary btn-sm" onClick={handlePrint}>
+            <a
+              href="/Jebilin_DM_Resume.pdf"
+              download="Jebilin_DM_Resume.pdf"
+              className="btn btn-primary btn-sm"
+              title="Download official PDF resume"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download PDF Resume
+            </a>
+            <button type="button" className="btn btn-secondary btn-sm" onClick={handlePrint}>
               Print / Save as PDF
             </button>
-            <button type="button" className="btn btn-secondary btn-sm" onClick={closeModal}>
+            <button type="button" className="btn btn-outline btn-sm" onClick={closeModal}>
               Close
             </button>
           </div>

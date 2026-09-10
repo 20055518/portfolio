@@ -71,8 +71,11 @@ export default function Projects({ openTrizenModal, openSphereModal, showToast }
                   <span className="bullet-icon">✓</span>
                   <div>
                     <strong>Frictionless Client PIN Access: </strong>
-                    Engineered secure 4-digit PIN-protected client portals with slug-based routing
+                    Engineered secure 6-digit PIN-protected client portals with slug-based routing
                     (<code>/gallery/:slug</code>), allowing guests to view private photos instantly without creating accounts.
+                    <span style={{ display: 'inline-block', marginLeft: '0.4rem', background: 'rgba(99, 102, 241, 0.15)', color: 'var(--primary)', border: '1px solid rgba(99, 102, 241, 0.3)', padding: '0.1rem 0.45rem', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600 }}>
+                      Live Demo Password/PIN: 482917
+                    </span>
                   </div>
                 </div>
 
@@ -169,14 +172,29 @@ export default function Projects({ openTrizenModal, openSphereModal, showToast }
                     <div className="pin-portal-box">
                       <div className="pin-shield-icon">🔒</div>
                       <div className="pin-title">Private Event Gallery</div>
-                      <div className="pin-subtitle">Enter the 4-digit PIN provided by your event host</div>
-                      <div className="pin-input-row">
-                        <div className="pin-dot">7</div>
-                        <div className="pin-dot">2</div>
+                      <div className="pin-subtitle">Enter the 6-digit PIN / password provided by your event host</div>
+                      <div className="pin-input-row" style={{ gap: '0.45rem' }}>
                         <div className="pin-dot">4</div>
+                        <div className="pin-dot">8</div>
+                        <div className="pin-dot">2</div>
                         <div className="pin-dot">9</div>
+                        <div className="pin-dot">1</div>
+                        <div className="pin-dot">7</div>
                       </div>
-                      <span className="pin-badge-success">✔ Access Granted • Welcome Guest</span>
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+                        <span className="pin-badge-success">✔ Access Granted • Welcome Guest</span>
+                        <button
+                          type="button"
+                          className="btn btn-outline btn-sm"
+                          style={{ minHeight: '28px', padding: '0.2rem 0.6rem', fontSize: '0.72rem' }}
+                          onClick={() => {
+                            navigator.clipboard.writeText('482917');
+                            showToast('PIN / Password 482917 copied to clipboard!');
+                          }}
+                        >
+                          Copy PIN (482917)
+                        </button>
+                      </div>
                     </div>
                   </div>
 

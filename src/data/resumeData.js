@@ -125,10 +125,12 @@ export const resumeData = {
       tagline: "An event photo delivery platform featuring real-time photo upload, team curation, and client delivery with friction-free PIN portals.",
       liveUrl: "https://trizenphotos.vercel.app",
       displayUrl: "trizenphotos.vercel.app",
+      accessPin: "482917",
+      demoPassword: "Password: 482917",
       technologies: ["React 19", "TypeScript", "FastAPI", "Python", "MongoDB Atlas", "JWT", "Vercel", "Render"],
       highlights: [
         "Directed AI-assisted tools to engineer an event photo delivery system with real-time upload, team curation, and client delivery.",
-        "Designed secure, PIN-protected client portals with slug routing, removing account creation friction for end users.",
+        "Designed secure, PIN-protected client portals with slug routing and 6-digit access code (Live Demo PIN: 482917), removing account creation friction for end users.",
         "Built async REST APIs with FastAPI, covering JWT authentication, role-based workflows, and Pillow-based thumbnail generation.",
         "Automated deployment across Vercel and Render, verifying 100% passing integration and unit tests."
       ]
