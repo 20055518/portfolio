@@ -81,7 +81,7 @@ export default function BackgroundCanvas() {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(99, 102, 241, 0.45)';
+        ctx.fillStyle = this.radius > 2 ? 'rgba(6, 214, 240, 0.65)' : 'rgba(139, 92, 246, 0.65)';
         ctx.fill();
       }
     }
@@ -101,7 +101,7 @@ export default function BackgroundCanvas() {
       ctx.clearRect(0, 0, width, height);
 
       // Draw connection lines
-      const maxDistance = width < 640 ? 80 : 120;
+      const maxDistance = width < 640 ? 85 : 130;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -109,11 +109,11 @@ export default function BackgroundCanvas() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
-            const alpha = (1 - distance / maxDistance) * 0.18;
+            const alpha = (1 - distance / maxDistance) * 0.22;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+            ctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`;
             ctx.lineWidth = 0.85;
             ctx.stroke();
           }
