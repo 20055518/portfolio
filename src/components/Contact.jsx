@@ -41,7 +41,31 @@ export default function Contact({ personal = portfolioData.personal }) {
     const subjectText = formData.subject.trim() || `Portfolio Inquiry from ${formData.name}`;
 
     try {
-      // Direct Formspree form submission endpoint
+      // 1. Primary: Submit to Web3Forms (forwards directly to dmjebilin@gmail.com without account activation friction)
+      const resWeb3 = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '5f9226cf-4481-4fc3-a55e-f0eebfbe4d9d',
+          name: formData.name,
+          email: formData.email,
+          subject: subjectText,
+          message: formData.message,
+          to: personal.email
+        })
+      });
+
+      const dataWeb3 = await resWeb3.json().catch(() => ({}));
+      if (resWeb3.ok && dataWeb3.success) {
+        setStatus({ submitting: false, success: true, error: null });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        return;
+      }
+
+      // 2. Secondary fallback: Formspree endpoint
       const response = await fetch('https://formspree.io/f/mqaeewge', {
         method: 'POST',
         headers: {
@@ -53,8 +77,7 @@ export default function Contact({ personal = portfolioData.personal }) {
           email: formData.email,
           _replyto: formData.email,
           subject: subjectText,
-          message: formData.message,
-          recipient: personal.email
+          message: formData.message
         })
       });
 
@@ -67,22 +90,16 @@ export default function Contact({ personal = portfolioData.personal }) {
         setFormData({ name: '', email: '', subject: '', message: '' });
         return;
       } else {
-        const data = await response.json().catch(() => ({}));
-        throw new Error(data.error || 'Server rejected the submission.');
+        throw new Error('Online form gateway rejected.');
       }
     } catch (err) {
-      // Fallback: Trigger default client mailto link gracefully
-      console.warn('Form submission endpoint unreachable, initiating mailto draft...', err);
+      // 3. Guaranteed Delivery Fallback: Direct Mailto Dispatch
+      console.warn('Form service failed, triggering direct client mail client dispatch...', err);
 
-      const mailBody = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+      const mailBody = `Name: ${formData.name}\nEmail: ${formData.email}\nSubject: ${subjectText}\n\nMessage:\n${formData.message}`;
       const mailtoUrl = `mailto:${personal.email}?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(mailBody)}`;
 
-      const link = document.createElement('a');
-      link.href = mailtoUrl;
-      link.target = '_self';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      window.location.href = mailtoUrl;
 
       setStatus({
         submitting: false,
