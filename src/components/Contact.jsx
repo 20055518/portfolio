@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './Icons.jsx';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, MessageSquare } from 'lucide-react';
+import { GithubIcon, LinkedinIcon, WhatsAppIcon } from './Icons.jsx';
 import { portfolioData } from '../data/portfolioData.js';
 
 export default function Contact({ personal = portfolioData.personal }) {
@@ -40,14 +40,19 @@ export default function Contact({ personal = portfolioData.personal }) {
 
     const subjectText = formData.subject.trim() || `Portfolio Inquiry from ${formData.name}`;
 
+    // Direct WhatsApp Dispatch to +91 9080510225
+    const cleanPhone = "919080510225";
+    const waText = `*New Portfolio Message*\n*From:* ${formData.name}\n*Email:* ${formData.email}\n*Subject:* ${subjectText}\n\n*Message:*\n${formData.message}`;
+    const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(waText)}`;
+
+    // Open WhatsApp in new tab / app
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+    // Also send async copy to email silently in the background
     try {
-      // 1. Primary: Submit to Web3Forms (forwards directly to dmjebilin@gmail.com without account activation friction)
-      const resWeb3 = await fetch('https://api.web3forms.com/submit', {
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
           access_key: '5f9226cf-4481-4fc3-a55e-f0eebfbe4d9d',
           name: formData.name,
@@ -56,58 +61,15 @@ export default function Contact({ personal = portfolioData.personal }) {
           message: formData.message,
           to: personal.email
         })
-      });
+      }).catch(() => {});
+    } catch (e) {}
 
-      const dataWeb3 = await resWeb3.json().catch(() => ({}));
-      if (resWeb3.ok && dataWeb3.success) {
-        setStatus({ submitting: false, success: true, error: null });
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        return;
-      }
-
-      // 2. Secondary fallback: Formspree endpoint
-      const response = await fetch('https://formspree.io/f/mqaeewge', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          _replyto: formData.email,
-          subject: subjectText,
-          message: formData.message
-        })
-      });
-
-      if (response.ok) {
-        setStatus({
-          submitting: false,
-          success: true,
-          error: null
-        });
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        return;
-      } else {
-        throw new Error('Online form gateway rejected.');
-      }
-    } catch (err) {
-      // 3. Guaranteed Delivery Fallback: Direct Mailto Dispatch
-      console.warn('Form service failed, triggering direct client mail client dispatch...', err);
-
-      const mailBody = `Name: ${formData.name}\nEmail: ${formData.email}\nSubject: ${subjectText}\n\nMessage:\n${formData.message}`;
-      const mailtoUrl = `mailto:${personal.email}?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(mailBody)}`;
-
-      window.location.href = mailtoUrl;
-
-      setStatus({
-        submitting: false,
-        success: true,
-        error: null
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }
+    setStatus({
+      submitting: false,
+      success: true,
+      error: null
+    });
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   return (
@@ -140,12 +102,17 @@ export default function Contact({ personal = portfolioData.personal }) {
                 </div>
               </a>
 
-              <a href={`tel:${personal.phone.replace(/\s+/g, '')}`} className="channel-card">
+              <a
+                href="https://wa.me/919080510225?text=Hi%20Jebilin,%20I%20viewed%20your%20portfolio%20and%20would%20like%20to%20connect."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="channel-card"
+              >
                 <div className="channel-icon">
-                  <Phone size={22} />
+                  <WhatsAppIcon size={22} />
                 </div>
                 <div className="channel-content">
-                  <span className="channel-label">TELEPHONE / WHATSAPP</span>
+                  <span className="channel-label">DIRECT WHATSAPP</span>
                   <div className="channel-val">{personal.phoneDisplay}</div>
                 </div>
               </a>
@@ -285,8 +252,8 @@ export default function Contact({ personal = portfolioData.personal }) {
                 className="btn btn-primary"
                 style={{ width: '100%', marginTop: '8px' }}
               >
-                <Send size={15} />
-                <span>{status.submitting ? 'Transmitting Message...' : 'Transmit Message'}</span>
+                <WhatsAppIcon size={16} />
+                <span>Send Message to WhatsApp</span>
               </button>
             </form>
           </div>
