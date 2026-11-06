@@ -239,6 +239,9 @@ export const portfolioData = {
         { step: "03", label: "Atlas Persistence", detail: "Image pointers, event slugs, and access PINs stored in MongoDB Atlas" },
         { step: "04", label: "Guest PIN Retrieval", detail: "Guests input 6-digit PIN (482917) for instantaneous gallery delivery" }
       ],
+      screenshots: [
+        { url: "/assets/trizenphotos/trizen-portal.jpg", title: "Luxury Studio Portal", caption: "PIN-Protected Event Gallery Code Entry (PIN: 482917)" }
+      ],
       liveUrl: "https://trizenphotos.vercel.app/",
       accessPin: "482917",
       githubUrl: "https://github.com/20055518"
