@@ -1,6 +1,7 @@
 import React from 'react';
+import { portfolioData } from '../data/portfolioData.js';
 
-export default function AiAssisted({ philosophy }) {
+export default function AiAssisted({ philosophy = portfolioData.aiPhilosophy }) {
   return (
     <section id="ai-assisted" className="section ai-section">
       <div className="container">

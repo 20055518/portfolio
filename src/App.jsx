@@ -12,44 +12,47 @@ import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 import BackToTop from './components/BackToTop.jsx';
 
+import { portfolioData } from './data/portfolioData.js';
 import './styles/editorial.css';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
 
+  const { personal, education, skills, projects, internships, aiPhilosophy } = portfolioData;
+
   return (
     <div className="editorial-app">
       {/* Top running masthead & Navigation */}
-      <Navbar />
+      <Navbar personal={personal} />
 
       <main>
         {/* Editorial Hero Specimen */}
-        <Hero />
+        <Hero personal={personal} />
 
         {/* About Section & Academic Profile */}
-        <About />
+        <About personal={personal} education={education} />
 
         {/* Technical Competencies Matrix */}
-        <Skills />
+        <Skills skillsData={skills} />
 
         {/* Featured Case Studies (CARE+, StudentSphere, TrizenPhotos) */}
-        <Projects onSelectProject={setSelectedProject} />
+        <Projects projects={projects} onSelectProject={setSelectedProject} />
 
         {/* AI-Assisted Engineering Methodology */}
-        <AiAssisted />
+        <AiAssisted philosophy={aiPhilosophy} />
 
         {/* Professional Experience Chronicle */}
-        <Experience />
+        <Experience internships={internships} />
 
         {/* Education & Academic Profile */}
-        <Education />
+        <Education education={education} />
 
         {/* Direct Correspondence & Inquiries */}
-        <Contact />
+        <Contact personal={personal} />
       </main>
 
       {/* Editorial Colophon & Index */}
-      <Footer />
+      <Footer personal={personal} />
 
       {/* Project Deep-Dive Modal */}
       {selectedProject && (

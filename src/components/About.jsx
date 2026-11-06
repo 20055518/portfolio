@@ -1,7 +1,8 @@
 import React from 'react';
 import { Layers, Cpu, Database, CheckCircle2 } from 'lucide-react';
+import { portfolioData } from '../data/portfolioData.js';
 
-export default function About({ personal, education }) {
+export default function About({ personal = portfolioData.personal, education = portfolioData.education }) {
   const pillars = [
     {
       icon: <Layers size={20} />,

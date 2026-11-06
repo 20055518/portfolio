@@ -1,7 +1,8 @@
 import React from 'react';
 import { Award, Calendar } from 'lucide-react';
+import { portfolioData } from '../data/portfolioData.js';
 
-export default function Experience({ internships }) {
+export default function Experience({ internships = portfolioData.internships }) {
   return (
     <section id="experience" className="section section-bordered">
       <div className="container">

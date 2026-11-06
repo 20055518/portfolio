@@ -1,7 +1,8 @@
 import React from 'react';
 import { GraduationCap, BookOpen, Globe } from 'lucide-react';
+import { portfolioData } from '../data/portfolioData.js';
 
-export default function Education({ education }) {
+export default function Education({ education = portfolioData.education }) {
   return (
     <section id="education" className="section section-bordered">
       <div className="container">

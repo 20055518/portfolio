@@ -1,6 +1,7 @@
 import React from 'react';
+import { portfolioData } from '../data/portfolioData.js';
 
-export default function Skills({ skillsData }) {
+export default function Skills({ skillsData = portfolioData.skills }) {
   return (
     <section id="skills" className="section section-bordered">
       <div className="container">
