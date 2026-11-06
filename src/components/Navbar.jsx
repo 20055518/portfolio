@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowUpRight, FileDown } from 'lucide-react';
 
-export default function Navbar({ theme, toggleTheme, openResume }) {
+export default function Navbar({ personal }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 24);
 
-      // Section spy
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
-      const scrollPosition = window.scrollY + 120;
+      const sectionIds = ['home', 'about', 'skills', 'projects', 'ai-assisted', 'experience', 'education', 'contact'];
+      const scrollPos = window.scrollY + 140;
 
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
         if (el) {
           const top = el.offsetTop;
           const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(id);
             break;
           }
         }
@@ -31,15 +31,17 @@ export default function Navbar({ theme, toggleTheme, openResume }) {
   }, []);
 
   const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Education', href: '#education' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About', href: '#about', id: 'about' },
+    { label: 'Skills', href: '#skills', id: 'skills' },
+    { label: 'Projects', href: '#projects', id: 'projects' },
+    { label: 'AI Method', href: '#ai-assisted', id: 'ai-assisted' },
+    { label: 'Experience', href: '#experience', id: 'experience' },
+    { label: 'Education', href: '#education', id: 'education' },
+    { label: 'Contact', href: '#contact', id: 'contact' }
   ];
 
-  const handleLinkClick = (href) => {
+  const handleLinkClick = (e, href) => {
+    e.preventDefault();
     setMobileMenuOpen(false);
     const target = document.querySelector(href);
     if (target) {
@@ -48,26 +50,23 @@ export default function Navbar({ theme, toggleTheme, openResume }) {
   };
 
   return (
-    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="container nav-container">
+    <header className={`site-nav ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="container nav-inner">
         {/* Brand */}
-        <a href="#home" className="brand-logo" onClick={(e) => { e.preventDefault(); handleLinkClick('#home'); }}>
-          <span className="logo-mark">JM</span>
-          <span>Jebilin D.M</span>
+        <a href="#home" className="nav-brand" onClick={(e) => handleLinkClick(e, '#home')}>
+          <span>{personal.name}</span>
+          <span className="nav-brand-tag">B.E. CSE</span>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="desktop-nav" aria-label="Main Navigation">
+        {/* Desktop Links */}
+        <nav aria-label="Main Navigation">
           <ul className="nav-links">
             {navLinks.map((link) => (
-              <li key={link.href}>
+              <li key={link.id}>
                 <a
                   href={link.href}
-                  className={`nav-link ${activeSection === link.href.slice(1) ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(link.href);
-                  }}
+                  className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
+                  onClick={(e) => handleLinkClick(e, link.href)}
                 >
                   {link.label}
                 </a>
@@ -76,129 +75,63 @@ export default function Navbar({ theme, toggleTheme, openResume }) {
           </ul>
         </nav>
 
-        {/* Actions (Theme & Resume) */}
+        {/* Action Button */}
         <div className="nav-actions">
-          {/* Theme Toggle Button */}
-          <button
-            type="button"
-            className="icon-btn theme-toggle-btn"
-            onClick={toggleTheme}
-            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            aria-label="Toggle visual theme"
+          <a
+            href={personal.resumeUrl}
+            download="Jebilin_DM_Resume.pdf"
+            className="btn btn-primary btn-sm"
+            title="Download Official Resume PDF"
           >
-            {theme === 'dark' ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-              </svg>
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-              </svg>
-            )}
-          </button>
+            <FileDown size={14} />
+            <span>Resume</span>
+          </a>
 
-          {/* View Resume Button */}
+          {/* Mobile Menu Toggle */}
           <button
             type="button"
-            className="btn btn-outline btn-sm desktop-nav"
-            onClick={openResume}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-            Resume
-          </button>
-
-          {/* Mobile Menu Toggle Button */}
-          <button
-            type="button"
-            className="icon-btn mobile-menu-toggle"
+            className="nav-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >
-            <span
-              className="hamburger-bar"
-              style={{
-                transform: mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none'
-              }}
-            />
-            <span
-              className="hamburger-bar"
-              style={{
-                opacity: mobileMenuOpen ? 0 : 1
-              }}
-            />
-            <span
-              className="hamburger-bar"
-              style={{
-                transform: mobileMenuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none'
-              }}
-            />
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav Drawer */}
-      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-        <nav className="mobile-nav-links" aria-label="Mobile Navigation">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`mobile-nav-link ${activeSection === link.href.slice(1) ? 'active' : ''}`}
-              onClick={(e) => {
-                e.preventDefault();
-                handleLinkClick(link.href);
-              }}
-            >
-              {link.label}
-            </a>
+      {/* Mobile Drawer */}
+      <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <ul className="mobile-nav-links">
+          {navLinks.map((link, idx) => (
+            <li key={link.id}>
+              <a
+                href={link.href}
+                className="mobile-nav-link"
+                onClick={(e) => handleLinkClick(e, link.href)}
+              >
+                <span className="num">0{idx + 1}</span>
+                <span>{link.label}</span>
+              </a>
+            </li>
           ))}
-          <button
-            type="button"
-            className="btn btn-primary btn-sm btn-full"
-            style={{ marginTop: '0.75rem' }}
-            onClick={() => {
-              setMobileMenuOpen(false);
-              openResume();
-            }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-            </svg>
-            View Full Resume
-          </button>
+        </ul>
+
+        <div className="mobile-drawer-footer">
           <a
-            href="/Jebilin_DM_Resume.pdf"
+            href={personal.resumeUrl}
             download="Jebilin_DM_Resume.pdf"
-            className="btn btn-outline btn-sm btn-full"
-            style={{ marginTop: '0.5rem' }}
-            onClick={() => setMobileMenuOpen(false)}
+            className="btn btn-primary"
+            style={{ width: '100%' }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            Download Official Resume (PDF)
+            <FileDown size={16} />
+            <span>Download Official Resume (PDF)</span>
           </a>
-        </nav>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--c-ink-muted)' }}>
+            <span>{personal.email}</span>
+            <span>{personal.location}</span>
+          </div>
+        </div>
       </div>
     </header>
   );

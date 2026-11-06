@@ -1,61 +1,56 @@
 import React from 'react';
+import { Award, Calendar } from 'lucide-react';
 
-export default function Experience({ resumeData }) {
-  const { internships } = resumeData;
-
+export default function Experience({ internships }) {
   return (
-    <section id="experience" className="section">
+    <section id="experience" className="section section-bordered">
       <div className="container">
-        {/* Section Header */}
         <div className="section-header">
-          <span className="section-tag">Work History</span>
+          <span className="section-label">05 // Industry Training</span>
           <h2 className="section-title">Internship Experience</h2>
           <p className="section-subtitle">
-            Two virtual software development internships in Python programming, strengthening core coding discipline,
-            problem-solving, and deadline management.
+            Hands-on software development internships in Python programming, strengthening core algorithmic design, code maintainability, and delivery discipline.
           </p>
-          <div className="section-divider" />
         </div>
 
-        {/* Timeline */}
-        <div className="timeline-wrapper">
-          {internships.map((internship) => (
-            <div key={internship.company} className="timeline-item">
-              <div className="timeline-dot" />
+        <div className="timeline-editorial">
+          {internships.map((intern) => (
+            <div key={intern.company} className="timeline-entry">
+              <div className="timeline-node" />
 
-              <div className="spotlight-card timeline-card">
-                <div className="card-spotlight-overlay" />
-
-                <div className="timeline-header">
+              <div className="timeline-card-editorial">
+                <div className="timeline-card-header">
                   <div>
-                    <h3 className="role-title">{internship.role}</h3>
-                    <div className="company-name">
-                      <span>{internship.company}</span>
-                      <span className="badge-internship">{internship.type}</span>
-                      {internship.highlight && (
-                        <span className="badge-highlight">{internship.highlight}</span>
-                      )}
-                    </div>
+                    <h3 className="timeline-role-title">{intern.role}</h3>
+                    <div className="timeline-company-line">{intern.company}</div>
                   </div>
-                  <div className="timeline-period">
-                    <span>📅</span>
-                    <span>{internship.period}</span>
+                  <div className="timeline-period-badge">
+                    <Calendar size={13} style={{ display: 'inline', marginRight: '6px', verticalAlign: '-1px' }} />
+                    <span>{intern.period}</span>
                   </div>
                 </div>
 
-                <div className="timeline-body">
-                  <p>{internship.summary}</p>
-                  <ul className="timeline-achievements">
-                    {internship.bullets.map((bullet, idx) => (
-                      <li key={idx}>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
+                {intern.award && (
+                  <div className="timeline-award-bar">
+                    <Award size={14} />
+                    <span>{intern.award}</span>
+                  </div>
+                )}
 
-                <div className="timeline-footer">
-                  {internship.tags.map((tag) => (
-                    <span key={tag} className="timeline-tag">
-                      {tag}
+                <p className="timeline-summary">{intern.summary}</p>
+
+                <ul className="timeline-bullets-list">
+                  {intern.contributions.map((b, idx) => (
+                    <li key={idx} className="timeline-bullet">
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="timeline-tags-row">
+                  {intern.technologies.map((t) => (
+                    <span key={t} className="tag">
+                      {t}
                     </span>
                   ))}
                 </div>

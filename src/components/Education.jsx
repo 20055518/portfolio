@@ -1,70 +1,70 @@
 import React from 'react';
+import { GraduationCap, BookOpen, Globe } from 'lucide-react';
 
-export default function Education({ resumeData }) {
-  const { education, certifications } = resumeData;
-
+export default function Education({ education }) {
   return (
-    <section id="education" className="section">
+    <section id="education" className="section section-bordered">
       <div className="container">
-        {/* Section Header */}
         <div className="section-header">
-          <span className="section-tag">Academic &amp; Credentials</span>
-          <h2 className="section-title">Education &amp; Certifications</h2>
+          <span className="section-label">06 // Academic Background</span>
+          <h2 className="section-title">Education &amp; Credentials</h2>
           <p className="section-subtitle">
-            Undergraduate degree in Computer Science and Engineering alongside verified internship credentials.
+            Formal undergraduate studies in Computer Science and Engineering, foundational coursework, and linguistic proficiencies.
           </p>
-          <div className="section-divider" />
         </div>
 
-        {/* Education & Certifications Grid */}
-        <div className="edu-cert-grid">
-          {/* Education Card */}
-          <div className="spotlight-card credential-card">
-            <div className="card-spotlight-overlay" />
-            <div className="credential-badge-icon">🎓</div>
-            <div className="credential-content">
-              <span className="credential-type">Degree Program</span>
-              <h3 className="credential-title">{education.degree}</h3>
-              <div className="credential-subtitle">{education.field}</div>
-              <div className="credential-institution">{education.institution}</div>
+        <div className="education-grid">
+          {/* Left Column: Degree Plate */}
+          <div className="degree-card-editorial">
+            <div className="degree-meta-top">
+              <span className="degree-meta-tag">UNDERGRADUATE CANDIDACY</span>
+              <span className="degree-period">{education.period}</span>
+            </div>
 
-              <div className="credential-meta">
-                <span className="credential-period">📅 {education.period}</span>
-                <span className="credential-location">📍 {education.location}</span>
-              </div>
+            <h3 className="degree-title">{education.degree}</h3>
+            <div className="degree-field">{education.field}</div>
+            <div className="degree-institution">{education.institution}</div>
+            <div className="degree-location">{education.location}</div>
 
-              <p className="credential-desc">{education.desc}</p>
+            <div className="coursework-heading">
+              <BookOpen size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: '-2px' }} />
+              Key Academic Coursework
+            </div>
+
+            <div className="coursework-chips">
+              {education.coursework.map((course) => (
+                <div key={course} className="coursework-chip">
+                  {course}
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Certifications Card */}
-          <div className="spotlight-card credential-card">
-            <div className="card-spotlight-overlay" />
-            <div className="credential-badge-icon">📜</div>
-            <div className="credential-content">
-              <span className="credential-type">Verified Credentials</span>
-              <h3 className="credential-title" style={{ marginBottom: '1rem' }}>
-                Internship Certifications
-              </h3>
-
-              <div className="certifications-list">
-                {certifications.map((cert) => (
-                  <div key={cert.issuer} className="cert-item-block">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '0.2rem' }}>
-                      <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>{cert.title}</strong>
-                      <span className={`cert-status-pill ${cert.highlight ? 'highlight' : ''}`}>
-                        {cert.highlight || cert.type}
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 600, marginBottom: '0.25rem' }}>
-                      {cert.issuer} • <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-muted)' }}>{cert.period}</span>
-                    </div>
-                    <p className="credential-desc" style={{ fontSize: '0.8125rem' }}>
-                      {cert.desc}
-                    </p>
+          {/* Right Column: Languages & Institutional Details */}
+          <div className="education-aside-stack">
+            <div className="education-aside-card">
+              <h4 className="aside-card-title">
+                <Globe size={18} style={{ display: 'inline', marginRight: '8px', verticalAlign: '-3px', color: 'var(--c-burgundy)' }} />
+                Linguistic Competencies
+              </h4>
+              <div className="languages-list">
+                {education.languages.map((lang) => (
+                  <div key={lang.name} className="language-item">
+                    <span className="language-name">{lang.name}</span>
+                    <span className="language-level">{lang.level}</span>
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="education-aside-card">
+              <h4 className="aside-card-title">
+                <GraduationCap size={18} style={{ display: 'inline', marginRight: '8px', verticalAlign: '-3px', color: 'var(--c-burgundy)' }} />
+                Academic Overview
+              </h4>
+              <p style={{ fontSize: '0.875rem', color: 'var(--c-ink-soft)', lineHeight: '1.65' }}>
+                Currently in the final year of the four-year Bachelor of Engineering program at Anand Institute of Higher Technology, actively preparing for entry-level Software Development, Backend Engineering, and Full-Stack roles.
+              </p>
             </div>
           </div>
         </div>
