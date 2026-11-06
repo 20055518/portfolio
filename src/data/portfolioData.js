@@ -175,6 +175,12 @@ export const portfolioData = {
         { step: "03", label: "Automated Engine", detail: "System computes attendance safety percentages & grade aggregations" },
         { step: "04", label: "Student & Admin View", detail: "Students track academic progress; Admin oversees institutional metrics" }
       ],
+      screenshots: [
+        { url: "/assets/studentsphere/home.png", title: "Landing Page", caption: "Public Portal & Campus Overview" },
+        { url: "/assets/studentsphere/login.png", title: "Triple-Portal Login", caption: "Role-gated Auth (Admin / Teacher / Student)" },
+        { url: "/assets/studentsphere/about.png", title: "About Section", caption: "System Architecture & Mission" },
+        { url: "/assets/studentsphere/contact.png", title: "Support & Helpdesk", caption: "Direct Campus Inquiry Portal" }
+      ],
       liveUrl: "https://web-service-lake.vercel.app/",
       githubUrl: "https://github.com/20055518"
     },

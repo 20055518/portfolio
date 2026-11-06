@@ -53,6 +53,45 @@ export default function ProjectModal({ project, onClose }) {
             {project.description}
           </p>
 
+          {/* Screenshot Showcase if Available */}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <div style={{ marginTop: '24px', marginBottom: '24px' }}>
+              <h4 className="modal-section-title">Application Interface Previews</h4>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '14px',
+                marginTop: '12px'
+              }}>
+                {project.screenshots.map((shot, sIdx) => (
+                  <div
+                    key={sIdx}
+                    style={{
+                      border: '1px solid var(--c-stone)',
+                      borderRadius: '4px',
+                      overflow: 'hidden',
+                      backgroundColor: 'var(--c-white)'
+                    }}
+                  >
+                    <img
+                      src={shot.url}
+                      alt={shot.title}
+                      style={{ width: '100%', height: '140px', objectFit: 'cover', display: 'block' }}
+                    />
+                    <div style={{ padding: '8px 10px' }}>
+                      <div style={{ fontFamily: 'var(--font-sans)', fontWeight: '600', fontSize: '0.85rem', color: 'var(--c-ink)' }}>
+                        {shot.title}
+                      </div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--c-ink-muted)' }}>
+                        {shot.caption}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Architecture Summary */}
           <h4 className="modal-section-title">Architectural Structure</h4>
           <p style={{ fontSize: '0.9375rem', color: 'var(--c-ink-soft)', marginBottom: '16px' }}>

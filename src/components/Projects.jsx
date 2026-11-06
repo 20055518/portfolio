@@ -140,6 +140,28 @@ export default function Projects({ projects = portfolioData.projects, onSelectPr
                       <span className="technical-status-badge">{project.status}</span>
                     </div>
 
+                    {/* StudentSphere Screenshot Gallery Preview */}
+                    {project.screenshots && project.screenshots.length > 0 && (
+                      <div className="project-gallery-preview">
+                        <div className="gallery-preview-label">APPLICATION INTERFACE PREVIEWS</div>
+                        <div className="gallery-preview-grid">
+                          {project.screenshots.map((shot, sIdx) => (
+                            <div
+                              key={sIdx}
+                              className="gallery-preview-card"
+                              onClick={() => onSelectProject(project)}
+                              title={`${shot.title} - Click for case study`}
+                            >
+                              <img src={shot.url} alt={shot.title} loading="lazy" />
+                              <div className="gallery-preview-overlay">
+                                <span>{shot.title}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     {/* Technical Flow Diagram */}
                     <div className="technical-diagram">
                       {project.workflowDiagram.map((step, idx) => (
