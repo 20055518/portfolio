@@ -127,6 +127,13 @@ export const portfolioData = {
         { step: "03", label: "Bayesian Updating", detail: "FastAPI recalibrates wait times dynamically against doctor consultation priors" },
         { step: "04", label: "Consultation & Audit", detail: "Doctor reviews history; Admin portal audits turnaround time metrics" }
       ],
+      screenshots: [
+        { url: "/assets/careplus/01-landing.png", title: "Smart Hospital Flow", caption: "QR-Enabled Patient Journey & Live Status Overview" },
+        { url: "/assets/careplus/02-patient-queue.png", title: "Patient Dashboard", caption: "Real-Time Patient Department Queue Tracker" },
+        { url: "/assets/careplus/03-triage-assessment.png", title: "Nurse Triage Dashboard", caption: "Triage Queue & Patient Waiting List" },
+        { url: "/assets/careplus/04-clinical-vitals.png", title: "Clinical Assessment Intake", caption: "Nurse Records Temperature, BP, SpO2 & Symptoms" },
+        { url: "/assets/careplus/05-doctor-queue-ml.png", title: "Doctor Dashboard & ML Predictions", caption: "Dynamic Wait Times, Probability & Bayesian Risk Triage" }
+      ],
       liveUrl: null,
       githubUrl: null
     },
